@@ -1,0 +1,633 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="langqun0502">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux：第1周作业">
+<meta property="og:url" content="http://example.com/2022/08/01/Linux%EF%BC%9A%E7%AC%AC1%E5%91%A8%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="langqun0502学习博客">
+<meta property="og:description" content="作业">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144156156.png">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144217205.png">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144230268.png">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144241854.png">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144300927.png">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144312105.png">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144326905.png">
+<meta property="og:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144341613.png">
+<meta property="article:published_time" content="2022-08-01T06:11:10.000Z">
+<meta property="article:modified_time" content="2022-08-01T07:45:03.620Z">
+<meta property="article:author" content="langqun0502">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:/Users/Administrator/blog/source_posts/Linux：第1周作业/image-20220801144156156.png">
+  
+  
+  <title>Linux：第1周作业 - langqun0502学习博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux：第1周作业">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-08-01 06:11" pubdate>
+        August 1, 2022 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      40 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux：第1周作业</h1>
+            
+            <div class="markdown-body">
+              <h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><span id="more"></span>
+
+<p>[TOC]</p>
+<h1 id="Q1-图文并茂解释开源许可证-GPL、BSD、MIT、Mozilla、Apache和LGPL的区别？"><a href="#Q1-图文并茂解释开源许可证-GPL、BSD、MIT、Mozilla、Apache和LGPL的区别？" class="headerlink" title="Q1. 图文并茂解释开源许可证 GPL、BSD、MIT、Mozilla、Apache和LGPL的区别？"></a>Q1. 图文并茂解释开源许可证 GPL、BSD、MIT、Mozilla、Apache和LGPL的区别？</h1><p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144156156.png" srcset="/img/loading.gif" lazyload alt="image-20220801144156156"></p>
+<p>见的开源许可证主要有 Apache、MIT、BSD、GPL、LGPL、MPL、SSPL 等，可以大致分为两大类：</p>
+<ol>
+<li>宽松自由软件许可协议 Permissive Free Software Licence<br>是一种对软件的使用、修改、传播等方式采用最低限制的自由软件许可协议条款类型。这种类型的软件许可协议将不保证原作品的派生作品会继续保持与原作品完全相同的相关限制条件，从而为原作品的自由使用、修改和传播等提供更大的空间。</li>
+<li>著佐权许可证 Copyleft License<br>是在有限空间内的自由使用、修改和传播，且不得违背原作品的限制条款。如果一款软件使用 Copyleft 类型许可协议规定软件不得用于商业目的，且不得闭源，那么后续的衍生子软件也必须得遵循该条款。<br>两者最大的差别在于：在软件被修改并再发行时， Copyleft License 仍然强制要求公开源代码（衍生软件需要开源），而Permissive Free Software Licence 不要求公开源代码（衍生软件可以变为专有软件）。<br>其中，Apache、MIT、BSD 都是宽松许可证，GPL 是典型的强著佐权（Copyleft ）许可证，LGPL、MPL 是弱著佐权（Copyleft ）许可证。SSPL 则是近年来 MongoDB 创建的一个新许可证，存在较大争议，开放源代码促进会 OSI 甚至认为 SSPL 就不是开源许可协议。</li>
+</ol>
+<h1 id="Q2-安装各发行版系统的安装-centos-rockylinux-ubuntu）"><a href="#Q2-安装各发行版系统的安装-centos-rockylinux-ubuntu）" class="headerlink" title="Q2.安装各发行版系统的安装(centos, rockylinux, ubuntu）"></a>Q2.安装各发行版系统的安装(centos, rockylinux, ubuntu）</h1><p>官网：<a target="_blank" rel="noopener" href="http://www.kernel.org/">www.kernel.org</a></p>
+<p>最早版本: <a target="_blank" rel="noopener" href="https://mirrors.edge.kernel.org/pub/linux/kernel/Historic/">https://mirrors.edge.kernel.org/pub/linux/kernel/Historic/</a></p>
+<h2 id="centos8"><a href="#centos8" class="headerlink" title="centos8"></a>centos8</h2><p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144217205.png" srcset="/img/loading.gif" lazyload alt="image-20220801144217205"></p>
+<h2 id="Centos7"><a href="#Centos7" class="headerlink" title="Centos7"></a>Centos7</h2><p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144230268.png" srcset="/img/loading.gif" lazyload alt="image-20220801144230268"></p>
+<h2 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h2><p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144241854.png" srcset="/img/loading.gif" lazyload alt="image-20220801144241854"></p>
+<h1 id="Q3-Linux中总结"><a href="#Q3-Linux中总结" class="headerlink" title="Q3.Linux中总结"></a>Q3.Linux中总结</h1><h2 id="3-1如何通过一个简短的关键字，获取相关的命令。"><a href="#3-1如何通过一个简短的关键字，获取相关的命令。" class="headerlink" title="3.1如何通过一个简短的关键字，获取相关的命令。"></a>3.1如何通过一个简短的关键字，获取相关的命令。</h2><p>方式一：使用–help</p>
+<p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144300927.png" srcset="/img/loading.gif" lazyload alt="image-20220801144300927"></p>
+<p>方式二：使用man</p>
+<p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144312105.png" srcset="/img/loading.gif" lazyload alt="image-20220801144312105"></p>
+<h2 id="3-2-通过命令的描述，获取命令的man文档。"><a href="#3-2-通过命令的描述，获取命令的man文档。" class="headerlink" title="3.2.通过命令的描述，获取命令的man文档。"></a>3.2.通过命令的描述，获取命令的man文档。</h2><p>[root@instance-j4y73zvl ~]# man man</p>
+<p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144326905.png" srcset="/img/loading.gif" lazyload alt="image-20220801144326905"></p>
+<h2 id="3-3-解读man文档，man分几个部分？man每个部分的解释，特别是语法部分。-lt-gt-…等各代表什么含义。"><a href="#3-3-解读man文档，man分几个部分？man每个部分的解释，特别是语法部分。-lt-gt-…等各代表什么含义。" class="headerlink" title="3.3.解读man文档，man分几个部分？man每个部分的解释，特别是语法部分。&lt;&gt;, [] …等各代表什么含义。"></a>3.3.解读man文档，man分几个部分？man每个部分的解释，特别是语法部分。&lt;&gt;, [] …等各代表什么含义。</h2><h3 id="3-3-1-man主要分为以下几部分及相应的解释"><a href="#3-3-1-man主要分为以下几部分及相应的解释" class="headerlink" title="3.3.1.man主要分为以下几部分及相应的解释"></a>3.3.1.man主要分为以下几部分及相应的解释</h3><p>不同类型的帮助称为不同的“章节”，统称为Linux手册，man 1 man </p>
+<table>
+<thead>
+<tr>
+<th>手册序号</th>
+<th>英文介绍</th>
+<th>中文介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1*</td>
+<td>Executable programs or shell commands</td>
+<td>可执行程序和shell命令</td>
+</tr>
+<tr>
+<td>2*</td>
+<td>System calls (functions provided by the kernel)</td>
+<td>系统调用</td>
+</tr>
+<tr>
+<td>3*</td>
+<td>Library calls (functions within program libraries)</td>
+<td>（C语言）库函数</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Special files (usually found in /dev)</td>
+<td>特殊文件</td>
+</tr>
+<tr>
+<td>5</td>
+<td>File formats and conventions, e.g. /etc/passwd</td>
+<td>文件格式</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Games</td>
+<td>游戏</td>
+</tr>
+<tr>
+<td>7*</td>
+<td>Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)</td>
+<td>杂项</td>
+</tr>
+<tr>
+<td>8</td>
+<td>System administration commands (usually only for root)</td>
+<td>系统管理员命令（通常只用于roor用户）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Kernel routines [Non standard]</td>
+<td>内核例程（非标准）</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-2-语法部分："><a href="#3-3-2-语法部分：" class="headerlink" title="3.3.2.语法部分："></a>3.3.2.语法部分：</h3><ul>
+<li>NAME 名称及简要说明</li>
+<li>SYNOPSIS 用法格式说明</li>
+<li>[] 可选内容</li>
+<li>&lt;&gt; 必选内容</li>
+<li>a|b 二选一</li>
+<li>{ } 分组</li>
+<li>… 同一内容可出现多次</li>
+<li>DESCRIPTION 详细说明</li>
+<li>OPTIONS 选项说明</li>
+<li>EXAMPLES 示例</li>
+<li>FILES 相关文件</li>
+<li>AUTHOR 作者</li>
+<li>COPYRIGHT 版本信息</li>
+<li>REPORTING BUGS bug信息</li>
+<li>SEE ALSO 其它帮助参考</li>
+</ul>
+<h3 id="3-3-3根据语法部分-简要的写几个操作。"><a href="#3-3-3根据语法部分-简要的写几个操作。" class="headerlink" title="3.3.3根据语法部分 简要的写几个操作。"></a>3.3.3根据语法部分 简要的写几个操作。</h3><h1 id="Q4-列出fstab文件的详细信息，详细解决fstab一行，每个或每几个字符的详细含义。"><a href="#Q4-列出fstab文件的详细信息，详细解决fstab一行，每个或每几个字符的详细含义。" class="headerlink" title="Q4.列出fstab文件的详细信息，详细解决fstab一行，每个或每几个字符的详细含义。"></a>Q4.列出fstab文件的详细信息，详细解决fstab一行，每个或每几个字符的详细含义。</h1><p><img src="C:\Users\Administrator\blog\source_posts\Linux：第1周作业\image-20220801144341613.png" srcset="/img/loading.gif" lazyload alt="image-20220801144341613"></p>
+<ol>
+<li><strong><file systems></strong> 挂载设备 : 不是我们通常理解的文件系统，而是指设备（硬盘及其分区，DVD光驱等）。它告知我们设备（分区）的名字，这是你在命令行中挂载（mount）、卸载（umount）设备时要用到的。  以上截图中相当于/dev/vdb1</li>
+<li><mountpoint> 挂载点：告诉我们设备挂载到哪里。以上截图相当于/mout_point</li>
+<li> <type> 文件系统类型：Linux支持许多文件系统。 要得到一个完整的支持名单查找mount man-page。典型  的名字包括这些：ext2, ext3, reiserfs, xfs, jfs,iso9660, vfat, ntfs, swap和auto,  ‘auto’  不是一个文件系统，而是让mount命令自动判断文件类型，特别对于可移动设备，软盘，DVD驱动器，这样做是很有必要的，因为可能每次挂载的文件类型不一致。以上截图中ext4</li>
+<li> <opts> 文件系统参数：这部分是最有用的设置！！！ 它能使你所挂载的设备在开机时自动加载、使中文显示不出现乱码、限制对挂载分区读写权限。它是与mount命令的用法相关的，要想得到一个完整的列表，参考mount manpage.</li>
+<li> <dump> 备份命令：dump utility用来决定是否做备份的.  dump会检查entry并用数字来决定是否对这个文件系统进行备份。允许的数字是0和1。如果是0，dump就会忽略这个文件系统，如果是1，dump就会作一个备份。大部分的用户是没有安装dump的，所以对他们而言<dump>这个entry应该写为0。 </li>
+<li><pass> 是否以fsck检验扇区：启动的过程中，系统默认会以fsck检验我们的 filesystem 是否完整  (clean)。 不过，某些 filesystem 是不需要检验的，例如内存置换空间 (swap) ，或者是特殊文件系统例如 /proc 与  /sys 等等。fsck会检查这个头目下的数字来决定检查文件系统的顺序，允许的数字是0, 1, 和2。0 是不要检验， 1  表示最早检验(一般只有根目录会配置为 1)， 2  也是要检验，不过1会比较早被检验啦！一般来说,根目录配置为1,其他的要检验的filesystem都配置为 2 就好了。</li>
+</ol>
+<h1 id="Q5-简要说明FHS结构。"><a href="#Q5-简要说明FHS结构。" class="headerlink" title="Q5.简要说明FHS结构。"></a>Q5.简要说明FHS结构。</h1><p>/boot：引导文件存放目录，内核文件(vmlinuz)、引导加载器(bootloader, grub)都存放于此目录</p>
+<p>/bin：所有用户使用的基本命令；不能关联至独立分区，OS启动即会用到的程序</p>
+<p>/sbin：管理类的基本命令；不能关联至独立分区，OS启动即会用到的程序</p>
+<p>/lib：启动时程序依赖的基本共享库文件以及内核模块文件(/lib/modules)</p>
+<p>/lib64：专用于x86_64系统上的辅助共享库文件存放位置</p>
+<p>/etc：配置文件目录</p>
+<p>/home/USERNAME：普通用户家目录</p>
+<p>/root：管理员的家目录</p>
+<p>/media：便携式移动设备挂载点</p>
+<p>/mnt：临时文件系统挂载点</p>
+<p>/dev：设备文件及特殊文件存储位置</p>
+<p> b: block device，随机访问</p>
+<p> c: character device，线性访问</p>
+<p>/opt：第三方应用程序的安装位置</p>
+<p>/srv：系统上运行的服务用到的数据</p>
+<p>/tmp：临时文件存储位置</p>
+<p>/usr: universal shared, read-only data</p>
+<p> bin: 保证系统拥有完整功能而提供的应用程序</p>
+<p> sbin:</p>
+<p> lib：32位使用</p>
+<p> lib64：只存在64位系统</p>
+<p> include: C程序的头文件(header files)</p>
+<p> share：结构化独立的数据，例如doc, man等</p>
+<p>​    local：第三方应用程序的安装位置</p>
+<p>  bin, sbin, lib, lib64, etc, share</p>
+<p>/var: variable data files</p>
+<p> cache: 应用程序缓存数据目录</p>
+<p> lib: 应用程序状态信息数据</p>
+<p> local：专用于为/usr/local下的应用程序存储可变数据</p>
+<p> lock: 锁文件</p>
+<p> log: 日志目录及文件</p>
+<p> opt: 专用于为/opt下的应用程序存储可变数据</p>
+<p> run: 运行中的进程相关数据,通常用于存储进程pid文件</p>
+<p> spool: 应用程序数据池</p>
+<p> tmp: 保存系统两次重启之间产生的临时数据</p>
+<p>/proc: 用于输出内核与进程信息相关的虚拟文件系统</p>
+<p>/sys：用于输出当前系统上硬件设备相关信息虚拟文件系统</p>
+<p>/selinux: security enhanced Linux，selinux相关的安全策略等信息的存储位置</p>
+<h1 id="Q6-相关命令理解总结"><a href="#Q6-相关命令理解总结" class="headerlink" title="Q6. 相关命令理解总结"></a>Q6. 相关命令理解总结</h1><h2 id="6-1-文件管理"><a href="#6-1-文件管理" class="headerlink" title="6.1.文件管理"></a>6.1.文件管理</h2><p>[root@instance-j4y73zvl etc]# touch test.txt  #创建test.txt文件<br>[root@instance-j4y73zvl etc]# cat test.txt    #查看test.txt文件<br>[root@instance-j4y73zvl etc]# cp test.txt /tmp  将test.txt复制到/tmp下<br>[root@instance-j4y73zvl etc]# mv test.txt test1.txt  #将test.txt名称更换成test1.txt<br>[root@instance-j4y73zvl etc]# rm test1.txt   #删除test1.txt</p>
+<h2 id="6-2-用户管理"><a href="#6-2-用户管理" class="headerlink" title="6.2.用户管理"></a>6.2.用户管理</h2><h3 id="6-2-1-useradd-新增用户"><a href="#6-2-1-useradd-新增用户" class="headerlink" title="6.2.1.useradd #新增用户"></a>6.2.1.useradd #新增用户</h3><p>-u UID </p>
+<p>-o 配合-u 选项，不检查UID的唯一性</p>
+<p>-g GID 指明用户所属基本组，可为组名，也可以GID</p>
+<p>-c “COMMENT“ 用户的注释信息</p>
+<p>-d HOME_DIR 以指定的路径(不存在)为家目录</p>
+<p>-s SHELL 指明用户的默认shell程序，可用列表在/etc/shells文件中</p>
+<p>-G GROUP1[,GROUP2,…] 为用户指明附加组，组须事先存在</p>
+<p>-N 不创建私用组做主组，使用users组做主组</p>
+<p>-r 创建系统用户 CentOS 6之前: ID&lt;500，CentOS7 以后: ID&lt;1000</p>
+<p>-m 创建家目录，用于系统用户</p>
+<p>-M 不创建家目录，用于非系统用户</p>
+<p>-p 指定加密的密码</p>
+<h3 id="6-2-2-usermod-修改用户属性"><a href="#6-2-2-usermod-修改用户属性" class="headerlink" title="6.2.2.usermod #修改用户属性"></a>6.2.2.usermod #修改用户属性</h3><p>-u UID: 新UID</p>
+<p>-g GID: 新主组</p>
+<p>-G GROUP1[,GROUP2,…[,GROUPN]]]：新附加组，原来的附加组将会被覆盖；若保留原有，则要同时使</p>
+<p>用-a选项</p>
+<p>-s SHELL：新的默认SHELL</p>
+<p>-c ‘COMMENT’：新的注释信息</p>
+<p>-d HOME: 新家目录不会自动创建；若要创建新家目录并移动原家数据，同时使用-m选项</p>
+<p>-l login_name: 新的名字</p>
+<p>-L: lock指定用户,在/etc/shadow 密码栏的增加 ! </p>
+<p>-U: unlock指定用户,将 /etc/shadow 密码栏的 ! 拿掉</p>
+<p>-e YYYY-MM-DD: 指明用户账号过期日期</p>
+<p>-f INACTIVE: 设定非活动期限，即宽限期</p>
+<h3 id="6-2-3-userdel-删除用户"><a href="#6-2-3-userdel-删除用户" class="headerlink" title="6.2.3.userdel  #删除用户"></a>6.2.3.userdel  #删除用户</h3><p>-f, –force  强制</p>
+<p>-r, –remove 删除用户家目录和邮箱</p>
+<h2 id="6-3-组用户"><a href="#6-3-组用户" class="headerlink" title="6.3.组用户"></a>6.3.组用户</h2><h3 id="6-3-1-groupadd-新增用户组"><a href="#6-3-1-groupadd-新增用户组" class="headerlink" title="6.3.1.groupadd #新增用户组"></a>6.3.1.groupadd #新增用户组</h3><p>-g GID 指明GID号；[GID_MIN, GID_MAX]</p>
+<p>-r 创建系统组，CentOS 6之前: ID&lt;500，CentOS 7以后: ID&lt;1000</p>
+<h3 id="6-3-2-groupmod-修改组属性"><a href="#6-3-2-groupmod-修改组属性" class="headerlink" title="6.3.2.groupmod #修改组属性"></a>6.3.2.groupmod #修改组属性</h3><p>-n group_name: 新名字</p>
+<p>-g GID: 新的GID</p>
+<h3 id="6-3-3-groupdel-删除组"><a href="#6-3-3-groupdel-删除组" class="headerlink" title="6.3.3.groupdel  #删除组"></a>6.3.3.groupdel  #删除组</h3><p>-f, –force 强制删除，即使是用户的主组也强制删除组,但会导致无主组的用户不可用无法登录</p>
+<h2 id="6-4-权限管理相关的命令"><a href="#6-4-权限管理相关的命令" class="headerlink" title="6.4.权限管理相关的命令"></a>6.4.权限管理相关的命令</h2><h2 id="6-4-1-chown-设置文件的所有者"><a href="#6-4-1-chown-设置文件的所有者" class="headerlink" title="6.4.1.chown #设置文件的所有者"></a>6.4.1.chown #设置文件的所有者</h2><p>OWNER  #只修改所有者</p>
+<p>OWNER:GROUP #同时修改所有者和属组</p>
+<p>:GROUP  #只修改属组，冒号也可用 . 替换</p>
+<p>–reference=RFILE  #参考指定的的属性，来修改  </p>
+<p>-R #递归，此选项慎用，非常危险！</p>
+<h3 id="6-4-2-chgrg-修改文件的属组"><a href="#6-4-2-chgrg-修改文件的属组" class="headerlink" title="6.4.2.chgrg #修改文件的属组"></a>6.4.2.chgrg #修改文件的属组</h3><p> -R 递归</p>
+<h3 id="6-4-3-chmod修改文件权限"><a href="#6-4-3-chmod修改文件权限" class="headerlink" title="6.4.3.chmod修改文件权限"></a>6.4.3.chmod修改文件权限</h3>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BD%9C%E4%B8%9A/">作业</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/01/Linux%EF%BC%9A1.Linux%E7%AE%80%E4%BB%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux:1.Linux简介</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/01/Linux%EF%BC%9A%E7%AC%AC2%E5%91%A8%E4%BD%9C%E4%B8%9A/">
+                        <span class="hidden-mobile">Linux:第2周作业</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

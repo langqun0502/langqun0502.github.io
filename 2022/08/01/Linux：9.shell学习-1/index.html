@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="langqun0502">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Linux学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux：9.shell学习">
+<meta property="og:url" content="http://example.com/2022/08/01/Linux%EF%BC%9A9.shell%E5%AD%A6%E4%B9%A0-1/index.html">
+<meta property="og:site_name" content="langqun0502学习博客">
+<meta property="og:description" content="Linux学习笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/08/01/Linux%EF%BC%9A9.shell%E5%AD%A6%E4%B9%A0-1/image-20220806203433019-16597892748142.png">
+<meta property="og:image" content="http://example.com/2022/08/01/Linux%EF%BC%9A9.shell%E5%AD%A6%E4%B9%A0-1/image-20220806203415821-16597892571871.png">
+<meta property="og:image" content="http://example.com/2022/08/01/Linux%EF%BC%9A9.shell%E5%AD%A6%E4%B9%A0-1/image-20220806203455106-16597892962093.png">
+<meta property="og:image" content="http://example.com/2022/08/01/Linux%EF%BC%9A9.shell%E5%AD%A6%E4%B9%A0-1/image-20220806220853703-16597949352854.png">
+<meta property="article:published_time" content="2022-08-01T13:07:54.000Z">
+<meta property="article:modified_time" content="2022-08-06T14:33:11.243Z">
+<meta property="article:author" content="langqun0502">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/08/01/Linux%EF%BC%9A9.shell%E5%AD%A6%E4%B9%A0-1/image-20220806203433019-16597892748142.png">
+  
+  
+  <title>Linux：9.shell学习 - langqun0502学习博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux：9.shell学习">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-08-01 13:07" pubdate>
+        August 1, 2022 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      67 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux：9.shell学习</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Linux学习笔记"><a href="#Linux学习笔记" class="headerlink" title="Linux学习笔记"></a>Linux学习笔记</h1><span id="more"></span>
+
+<h2 id="shell脚本基本结构"><a href="#shell脚本基本结构" class="headerlink" title="shell脚本基本结构"></a>shell脚本基本结构</h2><p>shell脚本编程：是基于过程式、解释执行的语言</p>
+<p>编程语言的基本结构：</p>
+<p>各种系统命令的组合</p>
+<p>数据存储：变量、数组</p>
+<p>表达式：a + b</p>
+<p>控制语句：if </p>
+<p>shell脚本：包含一些命令或声明，并符合一定格式的文本文件</p>
+<p>格式要求：首行shebang机制</p>
+<figure class="highlight d"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><pre><code class="hljs d"><span class="hljs-meta">#!/bin/bash </span><br><br><span class="hljs-meta">#!/usr/bin/python</span><br><br><span class="hljs-meta">#!/usr/bin/perl </span><br><br><span class="hljs-meta">#!/usr/bin/ruby</span><br><br><span class="hljs-meta">#!/usr/bin/lua</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="shell脚本创建过程"><a href="#shell脚本创建过程" class="headerlink" title="shell脚本创建过程"></a>shell脚本创建过程</h2><p>第一步：使用文本编辑器来创建文本文件</p>
+<p>​                 第一行必须包括shell声明序列：#!</p>
+<p>添加注释,注释以#开头</p>
+<p>第二步：加执行权限</p>
+<p>​                给予执行权限，在命令行上指定脚本的绝对或相对路径</p>
+<p>第三步：运行脚本</p>
+<p>​                直接运行解释器，将脚本作为解释器程序的参数运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash </span><br></code></pre></td></tr></table></figure>
+
+<h2 id="shell-脚本注释规范"><a href="#shell-脚本注释规范" class="headerlink" title="shell 脚本注释规范"></a>shell 脚本注释规范</h2><p>1、第一行一般为调用使用的语言</p>
+<p>2、程序名，避免更改文件名为无法找到正确的文件</p>
+<p>3、版本号</p>
+<p>4、更改后的时间</p>
+<p>5、作者相关信息</p>
+<p>6、该程序的作用，及注意事项</p>
+<p>7、最后是各版本的更新简要说明</p>
+<h2 id="第一个shell脚本"><a href="#第一个shell脚本" class="headerlink" title="第一个shell脚本"></a>第一个shell脚本</h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># vim hello.sh</span><br><br><span class="hljs-meta">#!/bin/bash</span><br>echo <span class="hljs-string">&quot;Hello World!&quot;</span><br><br><span class="hljs-meta">#执行方法一：</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># bash hello.sh </span><br>Hello World!<br><br><span class="hljs-meta">#执行方法二：</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># cat hello.sh | bash</span><br>Hello World!<br><br><span class="hljs-meta">#执行方法三：</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># bash &lt; hello.sh </span><br>Hello World!<br><br><span class="hljs-meta">#执行方法四：</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># ./hello.sh</span><br>-bash: ./hello.sh: Permission denied<br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># chmod +x hello.sh </span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># ./hello.sh        </span><br>Hello World!<br><br><span class="hljs-meta">#执行方法五：</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># yum install httpd</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># systemctl start httpd</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># cp hello.sh /var/www/html</span><br>[root<span class="hljs-symbol">@instance</span>-j4y73zvl scripts]<span class="hljs-meta"># curl -s http://127.0.0.1/hello.sh | bash</span><br>Hello World!<br><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="使用read命令来接受输入"><a href="#使用read命令来接受输入" class="headerlink" title="使用read命令来接受输入"></a>使用read命令来接受输入</h2><p>使用read来把输入值分配给一个或多个shell变量，read从标准输入中读取值，给每个单词分配一个变</p>
+<p>量，所有剩余单词都被分配给最后</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs excel">-p  指定要显示的提示<br><br>-s  静默输入，一般用于密码<br><br>-<span class="hljs-built_in">n</span> <span class="hljs-built_in">N</span> 指定输入的字符长度<span class="hljs-built_in">N</span><br><br>-d &#x27;字符&#x27;  输入结束符<br><br>-<span class="hljs-built_in">t</span> <span class="hljs-built_in">N</span> TIMEOUT为<span class="hljs-built_in">N</span>秒<br></code></pre></td></tr></table></figure>
+
+<p>范例：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk">[root@instance-j4y73zvl ~]<span class="hljs-comment"># vim score.sh </span><br><span class="hljs-comment">#!/bin/bash</span><br>read -p <span class="hljs-string">&quot;请输入你的考试成绩&quot;</span> SCORE<br>[[ <span class="hljs-variable">$SCORE</span> =~ ^<span class="hljs-number">100</span>|([<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>&#125;)$ ]] || &#123; echo <span class="hljs-string">&quot;请输入你的合法成绩！&quot;</span> ;<span class="hljs-keyword">exit</span>; &#125;<br><br>[ <span class="hljs-variable">$SCORE</span> -ge <span class="hljs-number">60</span> ]  &amp;&amp; echo <span class="hljs-string">&quot;PASS&quot;</span> ||  echo <span class="hljs-string">&quot;FAILD&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>范例：</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs prolog">[root@instance-j4y73zvl ~]# vim yesorno.sh <br><br>#!/bin/bash<br><br>read -p <span class="hljs-string">&quot;Do you agree? yes or no: &quot;</span> <span class="hljs-symbol">ANSWER</span><br><br>[[ $<span class="hljs-symbol">ANSWER</span> =~ ^([<span class="hljs-symbol">Yy</span>][<span class="hljs-symbol">Ee</span>][<span class="hljs-symbol">Ss</span>]|[<span class="hljs-symbol">Yy</span>]|[<span class="hljs-symbol">Nn</span>][<span class="hljs-symbol">Oo</span>]?)$ ]]  &amp;&amp; echo <span class="hljs-string">&quot;valid ANSWER&quot;</span> || echo <span class="hljs-string">&quot;invalid Answer&quot;</span><br>~               <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#!/bin/bash</span><br>  <br>read -p <span class="hljs-string">&quot;Do you agree? yes or no: &quot;</span> ANSWER<br><br>[[ <span class="hljs-variable">$ANSWER</span> =~ ^([Yy][Ee][Ss]|[Yy])$ ]]  &amp;&amp; &#123; echo <span class="hljs-string">&quot;YES&quot;</span> ;<span class="hljs-keyword">exit</span> ; &#125;<br>[[ <span class="hljs-variable">$ANSWER</span> =~ ^([Nn][Oo])$ ]]  &amp;&amp; &#123; echo <span class="hljs-string">&quot;NO&quot;</span> ;<span class="hljs-keyword">exit</span> ; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>[root@instance-j4y73zvl ~]# vim work_menu.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>. /etc/init.d/functions<br><span class="hljs-built_in">echo</span> -en <span class="hljs-string">&quot;\E[$[RANDOM%7+31];1m&quot;</span><br><span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-string">EOF</span><br><span class="hljs-string">请选择：</span><br><span class="hljs-string">1）备份数据库</span><br><span class="hljs-string">2）清理日志</span><br><span class="hljs-string">3）软件升级</span><br><span class="hljs-string">4）软件回滚</span><br><span class="hljs-string">5）删库跑路</span><br><span class="hljs-string">EOF</span><br><span class="hljs-built_in">echo</span> -en <span class="hljs-string">&#x27;\E[0m&#x27;</span><br><span class="hljs-built_in">read</span> -p  <span class="hljs-string">&quot;请选择上面项对应的数字1-5: &quot;</span> MENU<br>[ <span class="hljs-variable">$MENU</span> -eq 1 ] &amp;&amp; ./backup.sh<br>[ <span class="hljs-variable">$MENU</span> -eq 2 ] &amp;&amp; action <span class="hljs-string">&quot;清理日志&quot;</span><br>[ <span class="hljs-variable">$MENU</span> -eq 3 ] &amp;&amp; action <span class="hljs-string">&quot;软件升级&quot;</span><br>[ <span class="hljs-variable">$MENU</span> -eq 4 ] &amp;&amp; action <span class="hljs-string">&quot;软件回滚&quot;</span><br>[ <span class="hljs-variable">$MENU</span> -eq 5 ] &amp;&amp; action <span class="hljs-string">&quot;删库跑路&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="bash-shell的配置文件"><a href="#bash-shell的配置文件" class="headerlink" title="bash shell的配置文件"></a>bash shell的配置文件</h1><h2 id="按照生效范围划分两类"><a href="#按照生效范围划分两类" class="headerlink" title="按照生效范围划分两类"></a>按照生效范围划分两类</h2><p>全局配置：针对所有用户皆有效</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/</span>profile<br><br><span class="hljs-regexp">/etc/</span>profile.d/*.sh<br><br><span class="hljs-regexp">/etc/</span>bashrc<br></code></pre></td></tr></table></figure>
+
+<p>个人配置：只针对特定用户有效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.bash_profile<br><br>~/.bashrc<br></code></pre></td></tr></table></figure>
+
+<h2 id="shell登录两种方式分类"><a href="#shell登录两种方式分类" class="headerlink" title="shell登录两种方式分类"></a>shell登录两种方式分类</h2><h3 id="交互式登录"><a href="#交互式登录" class="headerlink" title="交互式登录"></a>交互式登录</h3><ul>
+<li>直接通过终端输入账号密码登录</li>
+<li>使用 su - UserName 切换的用户</li>
+</ul>
+<p>配置文件生效和执行顺序：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment">#放在每个文件最前</span><br><br><span class="hljs-regexp">/etc/</span>profile<br><br><span class="hljs-regexp">/etc/</span>profile.d/*.sh<br><br><span class="hljs-regexp">/etc/</span>bashrc<br><br>~/ .bash_ profile<br><br>~/ .bashrc<br><br><span class="hljs-regexp">/etc/</span>bashrc<br><br>\<span class="hljs-comment">#放在每个文件最后</span><br><br><span class="hljs-regexp">/etc/</span>profile.d/*.sh<br><br><span class="hljs-regexp">/etc/</span>bashrc<br><br><span class="hljs-regexp">/etc/</span>profile<br><br><span class="hljs-regexp">/etc/</span>bashrc   <span class="hljs-comment">#此文件执行两次</span><br><br>~/.bashrc<br><br>~/.bash_profile<br></code></pre></td></tr></table></figure>
+
+<p>注意：文件之间的调用关系，写在同一个文件的不同位置，将影响文件的执行顺序</p>
+<h3 id="非交互式登录"><a href="#非交互式登录" class="headerlink" title="非交互式登录"></a>非交互式登录</h3><ul>
+<li>su UserName</li>
+<li>图形界面下打开的终端</li>
+<li>执行脚本</li>
+<li>任何其它的bash实例</li>
+</ul>
+<p>执行顺序</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/</span>profile.d/*.sh<br><br><span class="hljs-regexp">/etc/</span>bashrc<br><br>~/.bashrc<br></code></pre></td></tr></table></figure>
+
+<h2 id="按功能划分分类"><a href="#按功能划分分类" class="headerlink" title="按功能划分分类"></a>按功能划分分类</h2><p>profifile类和bashrc类</p>
+<h3 id="profile类"><a href="#profile类" class="headerlink" title="profile类"></a>profile类</h3><p>profile类交互时登录的shell提供配置</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">全局：<span class="hljs-regexp">/etc/</span>profile, <span class="hljs-regexp">/etc/</span>profile.d/*.sh<br><br>个人：~/.bash_profile<br></code></pre></td></tr></table></figure>
+
+<p>功用：</p>
+<p>(1) 用于定义环境变量</p>
+<p>(2) 运行命令或脚本</p>
+<h3 id="bashrc类"><a href="#bashrc类" class="headerlink" title="bashrc类"></a>bashrc类</h3><p>bashrc类：为非交互式和交互式登录的shell提供配置</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">全局：<span class="hljs-regexp">/etc/</span>bashrc<br><br>个人：~/.bashrc<br></code></pre></td></tr></table></figure>
+
+<p>功用：</p>
+<p>(1) 定义命令别名和函数</p>
+<p>(2) 定义本地变量</p>
+<h2 id="编辑配置文件生效"><a href="#编辑配置文件生效" class="headerlink" title="编辑配置文件生效"></a>编辑配置文件生效</h2><p>修改profile和bashrc文件后需生效的两种方式：</p>
+<p>修改profifile和bashrc文件后需生效两种方法:</p>
+<ul>
+<li> 重新启动shell进程</li>
+<li> source|. 配置文件</li>
+</ul>
+<p>注意:source 会在当前shell中执行脚本,所有一般只用于执行置文件,或在脚本中调用另一个脚本的场景</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">.  </span>~/.bashrc<br></code></pre></td></tr></table></figure>
+
+<h2 id="Bash-退出任务"><a href="#Bash-退出任务" class="headerlink" title="Bash 退出任务"></a><strong>Bash</strong> <strong>退出任务</strong></h2><p>保存在~/.bash_logout文件中（用户）,在退出登录shell时运行</p>
+<p>功能：</p>
+<ul>
+<li>创建自动备份</li>
+<li>清除临时文件</li>
+</ul>
+<p><strong>练习</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-number">1</span>、让所有用户的PATH环境变量的值多出一个路径，例如：<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/apache/</span>bin <br><br><span class="hljs-number">2</span>、用户 root 登录时，将命令指示符变成红色，并自动启用如下别名：<br> rm=‘rm -i’ <br><br> cdnet=‘cd <span class="hljs-regexp">/etc/</span>sysconfifig<span class="hljs-regexp">/network-scripts/</span>’ <br><br> editnet=‘vim <span class="hljs-regexp">/etc/</span>sysconfifig<span class="hljs-regexp">/network-scripts/i</span>fcfg-eth0’ <br><br> editnet=‘vim <span class="hljs-regexp">/etc/</span>sysconfifig<span class="hljs-regexp">/network-scripts/i</span>fcfg-eno16777736 或 ifcfg-ens33 ’ (如果系统是CentOS7) <br><br><span class="hljs-number">3</span>、任意用户登录系统时，显示红色字体的警示提醒信息“Hi,dangerous！” <br><br><span class="hljs-number">4</span>、编写生成脚本基本格式的脚本，包括作者，联系方式，版本，时间，描述等<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a><strong>流程控制</strong></h1><h2 id="条件选择"><a href="#条件选择" class="headerlink" title="条件选择"></a><strong>条件选择</strong></h2><h3 id="条件判断分绍"><a href="#条件判断分绍" class="headerlink" title="条件判断分绍"></a><strong>条件判断分绍</strong></h3><p><strong>单分支条件</strong></p>
+<p><img src="image-20220806203433019-16597892748142.png" srcset="/img/loading.gif" lazyload alt="image-20220806203433019"></p>
+<p><strong>多分支条件</strong></p>
+<p><img src="image-20220806203415821-16597892571871.png" srcset="/img/loading.gif" lazyload alt="image-20220806203415821"></p>
+<p><img src="image-20220806203455106-16597892962093.png" srcset="/img/loading.gif" lazyload alt="image-20220806203455106"></p>
+<h3 id="选择执行-if-语句"><a href="#选择执行-if-语句" class="headerlink" title="选择执行 if 语句"></a><strong>选择执行</strong> <strong>if</strong> <strong>语句</strong></h3><p>格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> COMMANDS; <span class="hljs-keyword">then</span> COMMANDS; [ <span class="hljs-keyword">elif</span> COMMANDS; <span class="hljs-keyword">then</span> COMMANDS; ]... [ <span class="hljs-keyword">else</span> <br><br>COMMANDS; ] <span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
+
+<p>单分支</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">if</span> 判断条件;<span class="hljs-attribute">then</span><br><br>  条件为真的分支代码<br><br>fi<br></code></pre></td></tr></table></figure>
+
+<p>双分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> 判断条件; <span class="hljs-keyword">then</span><br><br> 条件为真的分支代码<br><br><span class="hljs-keyword">else</span><br><br> 条件为假的分支代码<br><br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
+
+<p>多分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">if</span> 判断条件1; <span class="hljs-keyword">then</span><br><br> 条件1为真的分支代码<br><br><span class="hljs-keyword">elif</span> 判断条件2; <span class="hljs-keyword">then</span><br><br> 条件2为真的分支代码<br><br><span class="hljs-keyword">elif</span> 判断条件3; <span class="hljs-keyword">then</span><br><br> 条件3为真的分支代码<br><br>...<br><br><span class="hljs-keyword">else</span><br><br> 以上条件都为假的分支代码<br><br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong></p>
+<ul>
+<li><strong>多个条件时，逐个条件进行判断，第一次遇为“真”条件时，执行其分支，而后结束整个if语句</strong>**</li>
+<li><strong>if 语句可嵌套</strong></li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">[root@instance-j4y73zvl ~]# <span class="hljs-attribute">age</span>=20; <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$age</span> -gt 18 ] ; then echo <span class="hljs-string">&quot;work hard&quot;</span>;fi<br>work hard<br>[root@instance-j4y73zvl ~]# <span class="hljs-attribute">age</span>=16; <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$age</span> -gt 18 ] ; then echo <span class="hljs-string">&quot;work hard&quot;</span>;fi  <br></code></pre></td></tr></table></figure>
+
+<p>范例：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs awk">[root@instance-j4y73zvl ~]<span class="hljs-comment"># vim score.sh </span><br><br><span class="hljs-comment">#!/bin/bash</span><br>read -p <span class="hljs-string">&quot;请输入你的考试成绩&quot;</span> SCORE<br>[[ <span class="hljs-variable">$SCORE</span> =~ ^<span class="hljs-number">100</span>|([<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>&#125;)$ ]] || &#123; echo <span class="hljs-string">&quot;请输入你的合法成绩！&quot;</span> ;<span class="hljs-keyword">exit</span>; &#125;<br><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$SCORE</span> -lt <span class="hljs-number">60</span> ]  ;then<br>        echo <span class="hljs-string">&quot;Failed&quot;</span><br>elif [ <span class="hljs-variable">$SCORE</span> -lt <span class="hljs-number">80</span> ]; then<br>        echo <span class="hljs-string">&quot;just soso&quot;</span><br><span class="hljs-keyword">else</span><br>        echo <span class="hljs-string">&quot;Excellent&quot;</span><br>fi<br>~                                <br><br>[root@instance-j4y73zvl ~]<span class="hljs-comment"># bash score.sh </span><br>请输入你的考试成绩<span class="hljs-number">70</span><br>just soso<br>[root@instance-j4y73zvl ~]<span class="hljs-comment"># bash score.sh </span><br>请输入你的考试成绩<span class="hljs-number">90</span><br>Excellent<br>[root@instance-j4y73zvl ~]<span class="hljs-comment"># bash score.sh </span><br>请输入你的考试成绩<span class="hljs-number">40</span><br>Failed<br></code></pre></td></tr></table></figure>
+
+<p>范例：身体质量指数 (BMI）</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs awk">[root@instance-j4y73zvl ~]<span class="hljs-comment"># vim bim.sh</span><br><br><span class="hljs-comment">#/bin/bash</span><br>read -p <span class="hljs-string">&quot;请输入身高(m为单位): &quot;</span> HIGH<br><span class="hljs-keyword">if</span> [[ ! <span class="hljs-string">&quot;$HIGH&quot;</span> =~ ^[<span class="hljs-number">0</span>-<span class="hljs-number">2</span>](\.[<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]&#123;,<span class="hljs-number">2</span>&#125;)?$ ]];then<br>         echo <span class="hljs-string">&quot;输入错误的身高!&quot;</span><br>          <span class="hljs-keyword">exit</span> <span class="hljs-number">1</span><br>fi<br>read -p <span class="hljs-string">&quot;请输入体重(kg为单位): &quot;</span> WEIGHT<br><span class="hljs-keyword">if</span> [[ ! <span class="hljs-string">&quot;$WEIGHT&quot;</span> =~ ^[<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">3</span>&#125;$ ]];then echo <span class="hljs-string">&quot;输入错误的体重!&quot;</span>; <span class="hljs-keyword">exit</span> <span class="hljs-number">2</span>; fi<br>  BMI=`echo <span class="hljs-variable">$WEIGHT</span>/<span class="hljs-variable">$HIGH</span>^<span class="hljs-number">2</span>|bc`<br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$BMI</span> -le <span class="hljs-number">18</span> ] ;then<br>           echo <span class="hljs-string">&quot;太瘦了,多吃点!&quot;</span><br>elif [ <span class="hljs-variable">$BMI</span> -lt <span class="hljs-number">24</span> ] ;then<br>           echo <span class="hljs-string">&quot;身材很棒!&quot;</span><br><span class="hljs-keyword">else</span><br>           echo <span class="hljs-string">&quot;太胖了,注意节食,加强运动!&quot;</span><br>fi<br>~   <br>[root@instance-j4y73zvl ~]<span class="hljs-comment"># bash bim.sh </span><br>请输入身高(m为单位): <span class="hljs-number">1.85</span><br>请输入体重(kg为单位): <span class="hljs-number">80</span><br>身材很棒!<br>[root@instance-j4y73zvl ~]<span class="hljs-comment"># bash bim.sh </span><br>请输入身高(m为单位): <span class="hljs-number">170</span><br>输入错误的身高!<br>[root@instance-j4y73zvl ~]<span class="hljs-comment"># bash bim.sh </span><br>请输入身高(m为单位): <span class="hljs-number">1.7</span><br>请输入体重(kg为单位): <span class="hljs-number">80</span><br>太胖了,注意节食,加强运动!<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@instance-j4y73zvl ~]<span class="hljs-comment"># vim os_release.sh</span><br><br><span class="hljs-comment">#/bin/bash</span><br><br>. /etc/os-release<br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$ID</span> = <span class="hljs-string">&quot;rocky&quot;</span> -o <span class="hljs-variable">$ID</span> = <span class="hljs-string">&quot;centos&quot;</span> ];<span class="hljs-keyword">then</span><br>        <span class="hljs-built_in">echo</span> os version is rocky or centos<br>        yum -y install gcc<br><span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$ID</span> = <span class="hljs-string">&quot;ubuntu&quot;</span> ];<span class="hljs-keyword">then</span><br>        <span class="hljs-built_in">echo</span> OS version is Ubuntu<br>        apt -y install gcc<br><span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;不支持OS&quot;</span><br><span class="hljs-keyword">fi</span><br>~                       <br></code></pre></td></tr></table></figure>
+
+<h3 id="条件判断-case-语句"><a href="#条件判断-case-语句" class="headerlink" title="条件判断 case 语句"></a><strong>条件判断</strong> <strong>case</strong> <strong>语句</strong></h3><figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs llvm">case WORD in [PATTERN [| PATTERN]...) COMMANDS <span class="hljs-comment">;;]... esaccase 变量引用 in</span><br><br>PAT<span class="hljs-number">1</span>)<br><br> 分支<span class="hljs-number">1</span><br><br> <span class="hljs-comment">;;</span><br><br>PAT<span class="hljs-number">2</span>)<br><br> 分支<span class="hljs-number">2</span><br><br> <span class="hljs-comment">;;</span><br><br>...<br><br>*)<br><br> 默认分支<br><br> <span class="hljs-comment">;;</span><br><br>esac<br></code></pre></td></tr></table></figure>
+
+<p>case支持glob风格的通配符：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs less">* 任意长度任意字符<br><br>? 任意单个字符<br><br><span class="hljs-selector-attr">[]</span> 指定范围内的任意单个字符<br><br>|  或者，如: <span class="hljs-selector-tag">a</span>|<span class="hljs-selector-tag">b</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">[root@instance-j4y73zvl ~]<span class="hljs-comment"># vim menu.sh </span><br><br><span class="hljs-built_in">echo</span> -en <span class="hljs-string">&quot;\E[$[RANDOM%7+31];1m&quot;</span><br><span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-string">EOF</span><br><span class="hljs-string">请选择：</span><br><span class="hljs-string">1）备份数据库</span><br><span class="hljs-string">2）清理日志</span><br><span class="hljs-string">3）软件升级</span><br><span class="hljs-string">4）软件回滚</span><br><span class="hljs-string">5）删库跑路</span><br><span class="hljs-string">EOF</span><br><span class="hljs-built_in">echo</span> -en <span class="hljs-string">&#x27;\E[0m&#x27;</span><br><span class="hljs-built_in">read</span> -p <span class="hljs-string">&quot;请输入上面数字1-5: &quot;</span> MENU<br><span class="hljs-keyword">case</span> <span class="hljs-variable">$MENU</span> <span class="hljs-keyword">in</span><br>1)<br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;执行备份数据库&quot;</span><br>        <span class="hljs-comment">#./backup.sh</span><br>        ;;<br>2)<br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;清理日志&quot;</span><br>        ;;<br>3)<br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;软件升级&quot;</span><br>        ;;<br>4)<br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;软件回滚&quot;</span><br>        ;;<br>5)<br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;删库跑路&quot;</span><br>        ;;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>练习</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-number">1</span>、编写脚本 createuser.<span class="hljs-keyword">sh</span>，实现如下功能：使用一个用户名做为参数，如果指定参数的用户存在，就显示其存在，否则添加之。并设置初始密码为<span class="hljs-number">123456</span>，显示添加的用户的id号等信息，在此新用户第一次登录时，会提示用户立即改密码，如果没有参数，就提示：请输入用户名<br><br><span class="hljs-number">2</span>、编写脚本 yesorno.<span class="hljs-keyword">sh</span>，提示用户输入yes或<span class="hljs-keyword">no</span>,并判断用户输入的是yes还是<span class="hljs-keyword">no</span>,或是其它信息<br><br><span class="hljs-number">3</span>、编写脚本 fifiletype.<span class="hljs-keyword">sh</span>，判断用户输入文件路径，显示其文件类型（普通，目录，链接，其它文件类型）<br><br><span class="hljs-number">4</span>、编写脚本 checkint.<span class="hljs-keyword">sh</span>，判断用户输入的参数是否为正整数<br><br><span class="hljs-number">5</span>、编写脚本 reset.<span class="hljs-keyword">sh</span>，实现系统安装后的初始化环境，包括：<span class="hljs-number">1</span>、别名 <span class="hljs-number">2</span>、环境变量，如PS1等 <span class="hljs-number">3</span>、安装常用软件包，如：tree <span class="hljs-number">5</span>、实现固定的IP的设置，<span class="hljs-number">6</span>、<span class="hljs-keyword">vim</span>的设置等<br></code></pre></td></tr></table></figure>
+
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a><strong>循环</strong></h2><h3 id="循环执行介绍"><a href="#循环执行介绍" class="headerlink" title="循环执行介绍"></a><strong>循环执行介绍</strong></h3><p>将某代码段重复运行多次，通常有进入循环的条件和退出循环的条件</p>
+<p>重复运行次数</p>
+<ul>
+<li>循环次数事先已知</li>
+<li>循环次数事先未知</li>
+</ul>
+<p>常见的循环的命令：for, while, until</p>
+<p><img src="image-20220806220853703-16597949352854.png" srcset="/img/loading.gif" lazyload alt="image-20220806220853703"></p>
+<h3 id="循环-for"><a href="#循环-for" class="headerlink" title="循环 for"></a><strong>循环</strong> <strong>for</strong></h3><p>格式1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">for</span> NAME [<span class="hljs-keyword">in</span> WORDS ... ] ; <span class="hljs-keyword">do</span> COMMANDS; <span class="hljs-keyword">done</span><br><br>\<span class="hljs-comment">#方式1</span><br><br><span class="hljs-keyword">for</span> 变量名  <span class="hljs-keyword">in</span> 列表;<span class="hljs-keyword">do</span><br><br> 循环体<br><br><span class="hljs-keyword">done</span><br><br><span class="hljs-comment">#方式2</span><br><br><span class="hljs-keyword">for</span> 变量名  <span class="hljs-keyword">in</span> 列表<br><br><span class="hljs-keyword">do</span><br><br> 循环体<br><br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>执行机制：</strong></p>
+<ul>
+<li>依次将列表中的元素赋值给“变量名”; 每次赋值后即执行一次循环体; 直到列表中的元素耗尽，循环</li>
+<li>结束</li>
+<li>如果省略 [in WORDS … ] ，此时使用位置参数变量 in “$@”</li>
+</ul>
+<p><strong>for</strong> <strong>循环列表生成方式：</strong></p>
+<ul>
+<li>直接给出列表</li>
+<li>整数列表：</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">&#123;start..<span class="hljs-keyword">end</span>&#125;<br><br><span class="hljs-constructor">$(<span class="hljs-params">seq</span> [<span class="hljs-params">start</span> [<span class="hljs-params">step</span>]] <span class="hljs-params">end</span>)</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>返回列表的命令:</li>
+</ul>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">$(COMMAND)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>使用glob，如：*.sh</li>
+<li>变量引用，如：$@，$*，$#</li>
+</ul>
+<p>范例：面试题，计算1+2+3+…+100 的结果</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs coq">[root@instance-j4y73zvl ~]# <span class="hljs-built_in">sum</span>=<span class="hljs-number">0</span>;<span class="hljs-keyword">for</span> i <span class="hljs-built_in">in</span> &#123;<span class="hljs-number">1.</span><span class="hljs-number">.100</span>&#125;;<span class="hljs-built_in">do</span> <span class="hljs-keyword">let</span> <span class="hljs-built_in">sum</span>+=i;done;echo <span class="hljs-built_in">sum</span>=$<span class="hljs-built_in">sum</span><br><span class="hljs-built_in">sum</span>=<span class="hljs-number">5050</span><br><br>[root@instance-j4y73zvl ~]# seq -s+ <span class="hljs-number">100</span>|<span class="hljs-type">bc</span><br><span class="hljs-number">5050</span><br>[root@instance-j4y73zvl ~]# echo &#123;<span class="hljs-number">1.</span><span class="hljs-number">.100</span>&#125;|<span class="hljs-type">tr</span> &#x27; &#x27; +|<span class="hljs-type">bc</span><br><span class="hljs-number">5050</span><br>[root@instance-j4y73zvl ~]# seq <span class="hljs-number">100</span>|<span class="hljs-type">paste</span> -sd +|<span class="hljs-type">bc</span> <br><span class="hljs-number">5050</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs routeros">[root@instance-j4y73zvl ~]# vim 9x9.sh<br><span class="hljs-comment">#/bin/bash</span><br><br><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> &#123;1<span class="hljs-built_in">..</span>9&#125;;<span class="hljs-keyword">do</span><br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> `seq <span class="hljs-variable">$j</span>`;<span class="hljs-keyword">do</span><br>                echo -e <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;i&#125;</span>x<span class="hljs-variable">$&#123;j&#125;</span>=$[i*j]\t\c&quot;</span><br>        done<br>        echo<br>done<br><br>[root@instance-j4y73zvl ~]# bash 9x9.sh <br><span class="hljs-attribute">1x1</span>=1<br><span class="hljs-attribute">1x2</span>=2   <span class="hljs-attribute">2x2</span>=4<br><span class="hljs-attribute">1x3</span>=3   <span class="hljs-attribute">2x3</span>=6   <span class="hljs-attribute">3x3</span>=9<br><span class="hljs-attribute">1x4</span>=4   <span class="hljs-attribute">2x4</span>=8   <span class="hljs-attribute">3x4</span>=12  <span class="hljs-attribute">4x4</span>=16<br><span class="hljs-attribute">1x5</span>=5   <span class="hljs-attribute">2x5</span>=10  <span class="hljs-attribute">3x5</span>=15  <span class="hljs-attribute">4x5</span>=20  <span class="hljs-attribute">5x5</span>=25<br><span class="hljs-attribute">1x6</span>=6   <span class="hljs-attribute">2x6</span>=12  <span class="hljs-attribute">3x6</span>=18  <span class="hljs-attribute">4x6</span>=24  <span class="hljs-attribute">5x6</span>=30  <span class="hljs-attribute">6x6</span>=36<br><span class="hljs-attribute">1x7</span>=7   <span class="hljs-attribute">2x7</span>=14  <span class="hljs-attribute">3x7</span>=21  <span class="hljs-attribute">4x7</span>=28  <span class="hljs-attribute">5x7</span>=35  <span class="hljs-attribute">6x7</span>=42  <span class="hljs-attribute">7x7</span>=49<br><span class="hljs-attribute">1x8</span>=8   <span class="hljs-attribute">2x8</span>=16  <span class="hljs-attribute">3x8</span>=24  <span class="hljs-attribute">4x8</span>=32  <span class="hljs-attribute">5x8</span>=40  <span class="hljs-attribute">6x8</span>=48  <span class="hljs-attribute">7x8</span>=56  <span class="hljs-attribute">8x8</span>=64<br><span class="hljs-attribute">1x9</span>=9   <span class="hljs-attribute">2x9</span>=18  <span class="hljs-attribute">3x9</span>=27  <span class="hljs-attribute">4x9</span>=36  <span class="hljs-attribute">5x9</span>=45  <span class="hljs-attribute">6x9</span>=54  <span class="hljs-attribute">7x9</span>=63  <span class="hljs-attribute">8x9</span>=72  <span class="hljs-attribute">9x9</span>=81<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux%E7%AC%94%E8%AE%B0/">Linux笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/01/MySQL%EF%BC%9A1.%E5%AD%A6%E4%B9%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL学习</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/01/Linux%EF%BC%9A1.Linux%E7%AE%80%E4%BB%8B/">
+                        <span class="hidden-mobile">Linux:1.Linux简介</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="langqun0502">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux：22.数据库基础和MySQL安装应用">
+<meta property="og:url" content="http://example.com/2022/08/09/Linux%EF%BC%9A22.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E5%92%8CMySQL%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="langqun0502学习博客">
+<meta property="og:description" content="mysql">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/08/09/Linux%EF%BC%9A22.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E5%92%8CMySQL%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8/image-20220809205845184-16600499286641.png">
+<meta property="og:image" content="http://example.com/2022/08/09/Linux%EF%BC%9A22.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E5%92%8CMySQL%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8/image-20220809212354974-16600514368202.png">
+<meta property="og:image" content="http://example.com/2022/08/09/Linux%EF%BC%9A22.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E5%92%8CMySQL%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8/image-20220809212726061-16600516472023.png">
+<meta property="og:image" content="http://example.com/2022/08/09/Linux%EF%BC%9A22.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E5%92%8CMySQL%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8/image-20220809212925748-16600517675594.png">
+<meta property="article:published_time" content="2022-08-09T20:33:58.000Z">
+<meta property="article:modified_time" content="2022-08-16T13:44:07.858Z">
+<meta property="article:author" content="langqun0502">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/08/09/Linux%EF%BC%9A22.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E5%92%8CMySQL%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8/image-20220809205845184-16600499286641.png">
+  
+  
+  <title>Linux：22.数据库基础和MySQL安装应用 - langqun0502学习博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux：22.数据库基础和MySQL安装应用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-08-09 20:33" pubdate>
+        August 9, 2022 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      21k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      172 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux：22.数据库基础和MySQL安装应用</h1>
+            
+            <div class="markdown-body">
+              <p>mysql</p>
+<span id="more"></span>
+
+<h1 id="数据库原理"><a href="#数据库原理" class="headerlink" title="数据库原理"></a>数据库原理</h1><h2 id="数据库分类"><a href="#数据库分类" class="headerlink" title="数据库分类"></a>数据库分类</h2><ul>
+<li>结构化的数据：即有固定格式和有限长度的数据。例如填的表格就是结构化的数据，国籍：中华人民共和国，民族：汉，性别：男，这都叫结构化数据</li>
+<li>非结构化的数据：非结构化的数据越来越多，就是不定长、无固定格式的数据，例如: 网页,图片文件，有时候非常大，有时候很小；例如语音，视频都是非结构化的数据</li>
+<li>半结构化数据：比如：XML或者HTML的格式的数据</li>
+</ul>
+<h2 id="数据库的发展史"><a href="#数据库的发展史" class="headerlink" title="数据库的发展史"></a>数据库的发展史</h2><p>数据库与芯片,操作系统并列为计算机技术的三大件,也是企业IT系统必不可少的核心技术</p>
+<h3 id="数据库系统发展阶段"><a href="#数据库系统发展阶段" class="headerlink" title="数据库系统发展阶段"></a>数据库系统发展阶段</h3><ul>
+<li>萌芽阶段：文件系统</li>
+</ul>
+<p>​            使用磁盘文件来存储数据</p>
+<ul>
+<li>初级阶段：第一代数据库</li>
+</ul>
+<p>​            出现了网状模型、层次模型的数据库</p>
+<ul>
+<li>中级阶段：第二代数据库</li>
+</ul>
+<p>​            关系型数据库和结构化查询语言</p>
+<ul>
+<li>高级阶段：新一代数据库</li>
+</ul>
+<p>​            “关系-对象”型数据库 </p>
+<h3 id="文件管理系统的缺点"><a href="#文件管理系统的缺点" class="headerlink" title="文件管理系统的缺点"></a>文件管理系统的缺点</h3><ul>
+<li>编写应用程序不方便</li>
+<li>不支持对文件的并发访问</li>
+<li>无安全控制功能</li>
+<li>难以按用户视图表示数据</li>
+<li>数据间联系弱</li>
+<li>数据冗余不可避免</li>
+<li>应用程序依赖性</li>
+</ul>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ul>
+<li>Database：数据库是数据的汇集，它以一定的组织形式存于存储介质上</li>
+<li>DBMS：Database Management System, 是管理数据库的系统软件，它实现数据库系统的各种功能。是数据库系统的核心</li>
+<li>DBA：Database Administrator, 负责数据库的规划、设计、协调、维护和管理等工作</li>
+<li>Application：应用程序,指以数据库为基础的应用程序</li>
+</ul>
+<h3 id="数据库管理系统的优点"><a href="#数据库管理系统的优点" class="headerlink" title="数据库管理系统的优点"></a>数据库管理系统的优点</h3><ul>
+<li>程序与数据相互独立</li>
+<li>保证数据的安全、可靠</li>
+<li>最大限度地保证数据的正确性</li>
+<li>数据可以并发使用并能同时保证一致性</li>
+<li>相互关联的数据的集合</li>
+<li>较少的数据冗余</li>
+</ul>
+<h3 id="数据库管理系统的基本功能"><a href="#数据库管理系统的基本功能" class="headerlink" title="数据库管理系统的基本功能"></a>数据库管理系统的基本功能</h3><ul>
+<li>数据定义</li>
+<li>数据处理</li>
+<li>数据安全</li>
+<li>数据备份</li>
+</ul>
+<h3 id="各种数据库管理系统"><a href="#各种数据库管理系统" class="headerlink" title="各种数据库管理系统"></a>各种数据库管理系统</h3><h4 id="层次数据库"><a href="#层次数据库" class="headerlink" title="层次数据库"></a>层次数据库</h4><p><img src="image-20220809205845184-16600499286641.png" srcset="/img/loading.gif" lazyload alt="image-20220809205845184"></p>
+<p>分层结构由IBM在20世纪60年代开发，并在早期大型机DBMS中使用。记录的关系形成了一个树状模型。这种结构简单，但缺乏灵活性，因为这种关系仅限于一对多关系。</p>
+<p>代表数据库：IBM IMS(信息管理系统</p>
+<h4 id="网状数据库"><a href="#网状数据库" class="headerlink" title="网状数据库"></a>网状数据库</h4><p><img src="image-20220809212354974-16600514368202.png" srcset="/img/loading.gif" lazyload alt="image-20220809212354974"></p>
+<p>1964年通用电气GE公司的 Charles Bachman 成功地开发出世界上第一个网状数据库IDS(集成数据存储)，IDS 具有数据模式和日志的特征，只能在GE主机运行</p>
+<h4 id="关系型数据库-RDBMS"><a href="#关系型数据库-RDBMS" class="headerlink" title="关系型数据库 RDBMS"></a>关系型数据库 RDBMS</h4><p>Relational Database Management System,关系模型最初由IBM公司的英国计算机科学家埃德加·科德(Edgar F. Codd)于1969年描述</p>
+<p>1974年，IBM开始开发系统R，这是一个开发RDBMS原型的研究项目。</p>
+<p>然而，第一个商业上可用的RDBMS是甲骨文，于1979年由关系软件（现为甲骨文oracle公司）发布</p>
+<h5 id="关系统型数据库相关概念"><a href="#关系统型数据库相关概念" class="headerlink" title="关系统型数据库相关概念"></a>关系统型数据库相关概念</h5><ul>
+<li>关系Relational ：关系就是二维表，其中：表中的行、列次序并不重要</li>
+<li>行row：表中的每一行，又称为一条记录record </li>
+<li>列column：表中的每一列，称为属性，字段，域field </li>
+<li>主键Primary key：PK ,一个或多个字段的组合, 用于惟一确定一个记录的字段，一张表只有一个主键, 主键字段不能为空NULL</li>
+<li>唯一键Unique key: 一个或多个字段的组合,用于惟一确定一个记录的字段,一张表可以有多个UK,而 且UK字段可以为NULL</li>
+<li>域domain：属性的取值范围，如，性别只能是’男’和’女’两个值，人类的年龄只能0-150</li>
+</ul>
+<h5 id="常用关系数据库"><a href="#常用关系数据库" class="headerlink" title="常用关系数据库"></a>常用关系数据库</h5><ul>
+<li>MySQL: MySQL, MariaDB, Percona Server</li>
+<li>PostgreSQL: 简称为pgsql，EnterpriseDB</li>
+<li>Oracle</li>
+<li>MSSQL Server</li>
+<li>DB2</li>
+</ul>
+<h3 id="数据库排名"><a href="#数据库排名" class="headerlink" title="数据库排名"></a>数据库排名</h3><figure class="highlight awk"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>db-engines.com<span class="hljs-regexp">/en/</span>ranking<br></code></pre></td></tr></table></figure>
+
+<p><img src="image-20220809212726061-16600516472023.png" srcset="/img/loading.gif" lazyload alt="image-20220809212726061"></p>
+<h2 id="关系型数据库理论"><a href="#关系型数据库理论" class="headerlink" title="关系型数据库理论"></a>关系型数据库理论</h2><h3 id="实体-联系模型E-R"><a href="#实体-联系模型E-R" class="headerlink" title="实体-联系模型E-R"></a>实体-联系模型E-R</h3><p>E-R模型即实体-关系模型﹐E-R模型就是描述数据库存储数据的结构模型</p>
+<p>对于大型公司开发项目﹐需要根据产品经理的设计﹐先使用建模工具,如:power designer ,db desinger</p>
+<p>等这些软件来画出实体-关系模型(E-R模型)</p>
+<ul>
+<li>实体Entity：客观存在并可以相互区分的客观事物或抽象事件称为实体即表,在E-R图中用矩形表示</li>
+<li>实体，把实体名写在框内</li>
+<li>属性Attribute：实体所具有的特征或性质,描述实体里面的单个信息, 使用椭圆形表示</li>
+<li>联系Relationship：描述了实体的属性之间的关联规则</li>
+</ul>
+<ol>
+<li>实体内部的联系：指组成同一个实体内的各属性之间的联系。如职工实体中，职工号和部门经理号之间有一种关联关系</li>
+<li>实体之间的联系：指不同实体之间的属性的联系。例：学生选课实体和学生基本信息实体之间</li>
+<li>实体之间的联系用菱形框表示</li>
+</ol>
+<p>E-R 模型范例: </p>
+<p><img src="image-20220809212925748-16600517675594.png" srcset="/img/loading.gif" lazyload alt="image-20220809212925748"></p>
+<h3 id="联系类型"><a href="#联系类型" class="headerlink" title="联系类型"></a>联系类型</h3><ul>
+<li>一对一联系(1:1): 在表A或表B中创建一个字段﹐存储另一个表的主键值 如: 一个人只有一个身份证</li>
+<li>一对多联系(1:n)：外键, 如: 部门和员工</li>
+<li>多对多联系(m:n)：增加第三张表, 如: 学生和课程</li>
+</ul>
+<h3 id="数据的操作"><a href="#数据的操作" class="headerlink" title="数据的操作"></a>数据的操作</h3><p>开发工程师 CRUD (增加Create、查询Read或 Retrieve、更新Update、 删除Delete)</p>
+<ul>
+<li>数据提取：在数据集合中提取感兴趣的内容。SELECT</li>
+<li>数据更新：变更数据库中的数据。INSERT、DELETE、UPDATE</li>
+</ul>
+<h3 id="数据库的正规化分析"><a href="#数据库的正规化分析" class="headerlink" title="数据库的正规化分析"></a>数据库的正规化分析</h3><p>数据库规范化，又称数据库或资料库的正规化、标准化，是数据库设计中的一系列原理和技术，以减少数据库中数据冗余，增进数据的一致性。关系模型的发明者埃德加·科德最早提出这一概念，并于1970年代初定义了第一范式、第二范式和第三范式的概念设计关系数据库时，遵从不同的规范要求，设计出合理的关系型数据库，不同的规范要求被称为不同范式，各种范式呈递次规范，越高的范式数据库冗余越小目前关系数据库有六种范式：第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、巴德斯科范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）。满足最低要求的范式是第一范式（1NF）。在第一范式的基础上进一步满足更多规范要求的称为第二范式（2NF），其余范式以次类推。一般数据库只需满足第三范式(3NF）即可</p>
+<p>规则是死的,人是活的,所以范式是否必须遵守,要看业务需要而定</p>
+<p>掌握范式的目的是为了在合适的场景下违反范式</p>
+<h4 id="第一范式：1NF"><a href="#第一范式：1NF" class="headerlink" title="第一范式：1NF"></a>第一范式：1NF</h4><p>无重复的列，每一列都是不可分割的基本数据项，同一列中不能有多个值，即实体中的某个属性不能有多个值或者不能有重复的属性，确保每一列的原子性。除去同类型的字段，就是无重复的列</p>
+<p>说明：第一范式（1NF）是对关系模式的基本要求，不满足第一范式（1NF）的数据库就不是关系数据库</p>
+<h4 id="第二范式：2NF"><a href="#第二范式：2NF" class="headerlink" title="第二范式：2NF"></a>第二范式：2NF</h4><p>第二范式必须先满足第一范式，属性完全依赖于主键，要求表中的每个行必须可以被唯一地区分，通常为表加上每行的唯一标识主键PK，非PK的字段需要与整个PK有直接相关性,即非PK的字段不能依赖于部分主键</p>
+<h4 id="第三范式：3NF"><a href="#第三范式：3NF" class="headerlink" title="第三范式：3NF"></a>第三范式：3NF</h4><p>满足第三范式必须先满足第二范式属性，非主键属性不依赖于其它非主键属性。第三范式要求一个数据表中不包含已在其它表中已包含的非主关键字信息，非PK的字段间不能有从属关系</p>
+<h3 id="SQL-结构化查询语言简介"><a href="#SQL-结构化查询语言简介" class="headerlink" title="SQL 结构化查询语言简介"></a>SQL 结构化查询语言简介</h3><p>SQL：Structure Query Language,结构化查询语言是1974年由Boyce和Chamberlin提出的一个通用的、功能极强的关系性数据库语言</p>
+<p>SQL解释器：将SQL语句解释成机器语言</p>
+<p>数据存储协议：应用层协议，C/S</p>
+<ul>
+<li>S：server, 监听于套接字，接收并处理客户端的应用请求</li>
+<li>C：Client</li>
+</ul>
+<p>客户端程序接口</p>
+<ul>
+<li>CLI</li>
+<li>GUI</li>
+</ul>
+<p>应用编程接口</p>
+<ul>
+<li>ODBC：Open Database Connectivity</li>
+<li>JDBC：Java Data Base Connectivity</li>
+</ul>
+<h1 id="MySQL安装和基本使用"><a href="#MySQL安装和基本使用" class="headerlink" title="MySQL安装和基本使用"></a>MySQL安装和基本使用</h1><h2 id="MySQL-介绍"><a href="#MySQL-介绍" class="headerlink" title="MySQL 介绍"></a>MySQL 介绍</h2><h3 id="mysql历史"><a href="#mysql历史" class="headerlink" title="mysql历史"></a>mysql历史</h3><p>MySQL的历史可以追溯到1979年，它的创始人叫作Michael Widenius，他在开发一个报表工具的时候，设计了一套API，后来他的客户要求他的API支持sql语句，他直接借助于mSQL（当时比较牛）的代码，将它集成到自己的存储引擎中。但是他总是感觉不满意，萌生了要自己做一套数据库的想法。</p>
+<p>直到1996年，MySQL 1.0发布，Michael Widenius的大女儿的简称就是MY，Michael Widenius大概也是把MySQL当成自己的女儿一样来对待.仅仅过了几个月的时间，1996年10月MySQL 3.11.1当时发布了Solaris的版本，一个月后，linux的版本诞生，从那时候开始，MySQL慢慢的被人所接受。</p>
+<p>1999年，Michael Widenius成立了MySQL AB公司，MySQL由个人开发转变为团队开发，2000年使用GPL协议开源。</p>
+<p>2001年，MySQL生命中的大事发生了，那就是存储引擎InnoDB的诞生！Oracle在2005年收购了InnoDB，只不过InnoDB一直以来都只能作为第三方插件供用户选择。直到现在，MySQL可以选择的众多存储引擎中，InnoDB依然是第一选择</p>
+<p>2008年1月，MySQL AB公司被Sun公司以10亿美金收购，MySQL数据库进入Sun时代。Sun为MySQL的发展提供了绝佳的环境，2008年11月，MySQL 5.1发布，MySQL成为了最受欢迎的小型数据库。</p>
+<p>2009年4月，Oracle公司以74亿美元收购Sun公司，MySQL也随之进入Oracle时代。</p>
+<p>2010年12月，MySQL 5.5发布，Oracle终于把InnoDB做成了MySQL默认的存储引擎，MySQL从此进入了辉煌时代。</p>
+<p>然而，从那之后，Oracle对MySQL的态度渐渐发生了变化，Oracle虽然宣称MySQL依然尊少GPL协议，但却暗地里把开发人员全部换成了Oracle自己人，开源社区再也影响不了MySQL发展的脚步，真正有心做贡献的人也被拒之门外，MySQL随时都有闭源的可能……</p>
+<p>看着自己辛苦养大的MySQL被Oracle搞成这样，Michael Widenius非常失望，决定在MySQL走向闭源前，将MySQL进行分支化，依然是使用了自己小女儿的名字MariaDB（玛莉亚DB）。</p>
+<p>MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可 MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。在存储引擎方面，使用XtraDB来代替MySQL的InnoDB。</p>
+<p>MariaDB由MySQL的创始人Michael Widenius主导，由开源社区的大神们进行开发。因此，大家都认为，MariaDB拥有比MySQL更纯正的MySQL血脉。</p>
+<p>最初的版本更新与MySQL同步，相对MySQL5以后的版本，MariaDB也有相应的5.1~5.5的版本。后来MariaDB终于摆脱了MySQL，它的版本号直接从10.0开始，以自己的步伐进行开发，当然，还是可以对MySQL完全兼容</p>
+<p>MySQL大事记</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">1979</span><span class="hljs-string">年：TcX公司</span> <span class="hljs-string">Monty</span> <span class="hljs-string">Widenius，Unireg</span><br><br><span class="hljs-number">1996</span><span class="hljs-string">年：发布MySQL1.0，Solaris版本，Linux版本</span><br><br><span class="hljs-number">1999</span><span class="hljs-string">年：MySQL</span> <span class="hljs-string">AB公司，瑞典</span><br><br><span class="hljs-number">2003</span><span class="hljs-string">年：MySQL</span> <span class="hljs-number">5.0</span><span class="hljs-string">版本，提供视图、存储过程等功能</span><br><br><span class="hljs-number">2008</span><span class="hljs-string">年：Sun公司</span> <span class="hljs-string">以10亿美元收购MySQL</span><br><br><span class="hljs-number">2009</span><span class="hljs-string">年：Oracle公司以</span> <span class="hljs-number">74</span> <span class="hljs-string">亿美元收购</span> <span class="hljs-string">sun</span> <span class="hljs-string">公司</span><br><br><span class="hljs-number">2009</span><span class="hljs-string">年：Monty成立MariaDB</span> <br></code></pre></td></tr></table></figure>
+
+<h3 id="MySQL系列"><a href="#MySQL系列" class="headerlink" title="MySQL系列"></a>MySQL系列</h3><h4 id="MySQL-的三大主要分支"><a href="#MySQL-的三大主要分支" class="headerlink" title="MySQL 的三大主要分支"></a>MySQL 的三大主要分支</h4><ul>
+<li>MySQL</li>
+<li>Mariadb</li>
+<li>Percona Server</li>
+</ul>
+<h4 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h4><p><a target="_blank" rel="noopener" href="https://www.mysql.com/">https://www.mysql.com/</a></p>
+<p><a target="_blank" rel="noopener" href="http://mariadb.org/">http://mariadb.org/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.percona.com/">https://www.percona.com</a></p>
+<h4 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h4><p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/">https://dev.mysql.com/doc/</a></p>
+<p><a target="_blank" rel="noopener" href="https://mariadb.com/kb/en/">https://mariadb.com/kb/en/</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://www.percona.com/software/mysql-database/percona-server">https://www.percona.com/software/mysql-database/percona-server</a> </p>
+<h3 id="MySQL的特性"><a href="#MySQL的特性" class="headerlink" title="MySQL的特性"></a>MySQL的特性</h3><ul>
+<li>开源免费</li>
+<li>插件式存储引擎：也称为”表类型”，存储管理器有多种实现版本，功能和特性可能均略有差别；用户可根据需要灵活选择,Mysql5.5.5开始innoDB引擎是MYSQL默认引擎</li>
+</ul>
+<h2 id="mysql安装方式介绍和快速安装"><a href="#mysql安装方式介绍和快速安装" class="headerlink" title="mysql安装方式介绍和快速安装"></a>mysql安装方式介绍和快速安装</h2><h3 id="安装方式介绍"><a href="#安装方式介绍" class="headerlink" title="安装方式介绍"></a>安装方式介绍</h3><p>程序包管理器管理的程序包</p>
+<p>源代码编译安装</p>
+<p>二进制格式的程序包：展开至特定路径，并经过简单配置后即可使用</p>
+<h3 id="RPM安装MySQL"><a href="#RPM安装MySQL" class="headerlink" title="RPM安装MySQL"></a>RPM安装MySQL</h3><p>CentOS 安装光盘</p>
+<p>项目官方：<a target="_blank" rel="noopener" href="https://downloads.mariadb.org/mariadb/repositories/">https://downloads.mariadb.org/mariadb/repositories/</a></p>
+<p>国内镜像：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/mariadb/yum/">https://mirrors.tuna.tsinghua.edu.cn/mariadb/yum/</a></p>
+<p>​                   <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/">https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/</a></p>
+<p>CentOS 8：安装光盘直接提供</p>
+<ul>
+<li>mysql-server：8.0</li>
+<li>mariadb-server : 10.3</li>
+</ul>
+<p>CentOS 7：安装光盘直接提供</p>
+<ul>
+<li>mariadb-server：5.5 服务器包</li>
+<li>mariadb 客户端工具包</li>
+</ul>
+<p>CentOS 6：</p>
+<ul>
+<li>mysql-server：5.1 服务器包</li>
+<li>mysql 客户端工具包</li>
+</ul>
+<h4 id="CentOS-7-利用yum源安装MySQL5-7"><a href="#CentOS-7-利用yum源安装MySQL5-7" class="headerlink" title="CentOS 7 利用yum源安装MySQL5.7**"></a>CentOS 7 利用yum源安装MySQL5.7**</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><code class="hljs routeros">[root@centos7 ~]#tee /etc/yum.repos.d/mysql.repo &lt;&lt;EOF<br><br>[mysql]<br><br><span class="hljs-attribute">name</span>=mysql5.7<br><br><span class="hljs-attribute">baseurl</span>=https://mirrors.tuna.tsinghua.edu.cn/mysql/yum/mysql-5.7-community-el7-<br><br>x86_64/<br><br><span class="hljs-attribute">gpgcheck</span>=0<br><br>EOF<br><br>[root@centos7 ~]#yum -y install mysql-community-server<br><br>[root@centos7 ~]#systemctl <span class="hljs-built_in">enable</span> --now mysqld<br><br>​         <br><br>[root@centos7 ~]#ss -ntl<br><br>State   Recv-Q Send-Q  Local Address:Port   <span class="hljs-built_in"> Peer </span>Address:Port      <br><br>LISTEN   0    128          *:22           *:*       <br>LISTEN   0    100      127.0.0.1:25           *:*       <br>LISTEN   0    128        [::]:22         [::]:*         <br>LISTEN   0    100        [::1]:25         [::]:*       <br>LISTEN   0    80         [::]:3306        [::]:*  <br><br>[root@centos7 ~]#mysql<br><span class="hljs-built_in">ERROR</span> 1045 (28000): Access denied <span class="hljs-keyword">for</span><span class="hljs-built_in"> user </span><span class="hljs-string">&#x27;root&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> (using password: <br><span class="hljs-literal">NO</span>)<br>[root@centos7 ~]#grep password /var/log/mysqld.log<br>2021-01-27T00:45:09.953242Z 1 [Note] A temporary password is generated <span class="hljs-keyword">for</span><br>root@localhost: pe%b#S8ah)j-<br>2021-01-27T00:46:09.491494Z 2 [Note] Access denied <span class="hljs-keyword">for</span><span class="hljs-built_in"> user </span><span class="hljs-string">&#x27;root&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span><br>(using password: <span class="hljs-literal">NO</span>)<br><span class="hljs-comment">#修改初始密码方法1</span><br>[root@centos7 ~]#mysql -uroot -p<span class="hljs-string">&#x27;pe%b#S8ah)j-&#x27;</span><br>mysql: [<span class="hljs-built_in">Warning</span>] Using a password on the command line<span class="hljs-built_in"> interface </span>can be insecure.<br>Welcome <span class="hljs-keyword">to</span> the MySQL monitor. Commands end with ; <span class="hljs-keyword">or</span> \g.<br>Your MySQL<span class="hljs-built_in"> connection </span>id is 4<span class="hljs-built_in"></span><br><span class="hljs-built_in">Server </span>version: 5.7.33<br>Copyright (c) 2000, 2021, Oracle <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> its affiliates.<br>Oracle is a registered trademark of Oracle Corporation <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> its<br>affiliates. Other names may be trademarks of their respective<br>owners.<span class="hljs-built_in"></span><br><span class="hljs-built_in">Type </span><span class="hljs-string">&#x27;help;&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;\h&#x27;</span> <span class="hljs-keyword">for</span> help.<span class="hljs-built_in"> Type </span><span class="hljs-string">&#x27;\c&#x27;</span> <span class="hljs-keyword">to</span> clear the current input statement.<br><span class="hljs-comment">#使用初始密码登录无法执行操作,需要修改密码后才可以</span><br>mysql&gt; status<br><span class="hljs-built_in">ERROR</span> 1820 (HY000): You must reset your password using ALTER<span class="hljs-built_in"> USER </span>statement <br>before executing this statement.<br><span class="hljs-comment">#修改简单密码不符合密码策略</span><br>mysql&gt; alter<span class="hljs-built_in"> user </span>root@<span class="hljs-string">&#x27;localhost&#x27;</span> identified by <span class="hljs-string">&#x27;Magedu2021&#x27;</span>;<br><span class="hljs-built_in">ERROR</span> 1819 (HY000): Your password does <span class="hljs-keyword">not</span> satisfy the current<span class="hljs-built_in"> policy </span><br>requirements<br><span class="hljs-comment">#修改为复杂密码</span><br>mysql&gt; alter<span class="hljs-built_in"> user </span>root@<span class="hljs-string">&#x27;localhost&#x27;</span> identified by <span class="hljs-string">&#x27;Magedu0!&#x27;</span>;<br>Query OK, 0 rows affected (0.00 sec)<br>mysql&gt; status<br>--------------<br>mysql Ver 14.14 Distrib 5.7.33, <span class="hljs-keyword">for</span> Linux (x86_64) using EditLine wrapper<span class="hljs-built_in"></span><br><span class="hljs-built_in">Connection </span>id: 4<br>Current database: <br>Current user: root@localhost<br>SSL: <span class="hljs-keyword">Not</span> <span class="hljs-keyword">in</span> use<br>Current pager: stdout<br>Using outfile: <span class="hljs-string">&#x27;&#x27;</span><br>Using delimiter: ;<span class="hljs-built_in"></span><br><span class="hljs-built_in">Server </span>version: 5.7.33<br>Protocol version: 10<br>Connection: Localhost via UNIX socket<span class="hljs-built_in"></span><br><span class="hljs-built_in">Server </span>characterset: latin1<br>Db     characterset: latin1<span class="hljs-built_in"></span><br><span class="hljs-built_in">Client </span>characterset: utf8<br>Conn. characterset: utf8<br>UNIX socket: /var/lib/mysql/mysql.sock<br><br>Uptime: 3 min 38 sec<br>Threads: 1 Questions: 8 Slow queries: 0 Opens: 106 Flush tables: 1 Open <br>tables: 99 Queries per second avg: 0.036<br>--------------<br>mysql&gt; exit<br><span class="hljs-comment">#修改初始密码方法2</span><br>[root@centos7 ~]#mysqladmin -uroot -p<span class="hljs-string">&#x27;pe%b#S8ah)j-&#x27;</span> password <span class="hljs-string">&#x27;Magedu0!&#x27;</span><br>mysqladmin: [<span class="hljs-built_in">Warning</span>] Using a password on the command line<span class="hljs-built_in"> interface </span>can be <br>insecure.<br>Warning: Since password will be sent <span class="hljs-keyword">to</span><span class="hljs-built_in"> server </span><span class="hljs-keyword">in</span> plain text, use ssl<span class="hljs-built_in"> connection </span><br><span class="hljs-keyword">to</span> ensure password safety.<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="CentOS-7-利用yum源安装Mariadb"><a href="#CentOS-7-利用yum源安装Mariadb" class="headerlink" title="CentOS 7 利用yum源安装Mariadb"></a>CentOS 7 利用yum源安装Mariadb</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//m</span>ariadb.org<span class="hljs-regexp">/download/</span><span class="hljs-comment">#mariadb-repositories</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment">#创建yum仓库配置文件</span><br><br>[<span class="hljs-string">root@centos7</span> <span class="hljs-string">~</span>]<span class="hljs-comment">#cat /etc/yum.repos.d/mariadb.repo </span><br><br><span class="hljs-comment"># MariaDB 10.5 CentOS repository list - created 2021-01-27 07:45 UTC</span><br><br><span class="hljs-comment"># https://mariadb.org/download/</span><br><br>[<span class="hljs-string">mariadb</span>]<br><br><span class="hljs-string">name</span> <span class="hljs-string">=</span> <span class="hljs-string">MariaDB</span><br><br><span class="hljs-string">baseurl</span> <span class="hljs-string">=</span> <span class="hljs-string">https://mirrors.nju.edu.cn/mariadb/yum/10.5/centos7-amd64</span><br><br><span class="hljs-string">gpgkey=https://mirrors.nju.edu.cn/mariadb/yum/RPM-GPG-KEY-MariaDB</span><br><br><span class="hljs-string">gpgcheck=1</span><br><br>[<span class="hljs-string">root@centos7</span> <span class="hljs-string">~</span>]<span class="hljs-comment">#yum install MariaDB-server -y </span><br><br>[<span class="hljs-string">root@centos7</span> <span class="hljs-string">~</span>]<span class="hljs-comment">#systemctl enable --now mariadb.service</span><br><br>[<span class="hljs-string">root@centos7</span> <span class="hljs-string">~</span>]<span class="hljs-comment">#mysql</span><br><br><span class="hljs-string">Welcome</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">MariaDB</span> <span class="hljs-string">monitor.</span> <span class="hljs-string">Commands</span> <span class="hljs-string">end</span> <span class="hljs-string">with</span> <span class="hljs-string">;</span> <span class="hljs-string">or</span> <span class="hljs-string">\g.</span><br><br><span class="hljs-string">Your</span> <span class="hljs-string">MariaDB</span> <span class="hljs-string">connection</span> <span class="hljs-string">id</span> <span class="hljs-string">is</span> <span class="hljs-number">4</span><br><br><span class="hljs-attr">Server version:</span> <span class="hljs-number">10.5</span><span class="hljs-number">.8</span><span class="hljs-string">-MariaDB</span> <span class="hljs-string">MariaDB</span> <span class="hljs-string">Server</span><br><br><span class="hljs-string">Copyright</span> <span class="hljs-string">(c)</span> <span class="hljs-number">2000</span><span class="hljs-string">,</span> <span class="hljs-number">2018</span><span class="hljs-string">,</span> <span class="hljs-string">Oracle,</span> <span class="hljs-string">MariaDB</span> <span class="hljs-string">Corporation</span> <span class="hljs-string">Ab</span> <span class="hljs-string">and</span> <span class="hljs-string">others.</span><br><br><span class="hljs-string">Type</span> <span class="hljs-string">&#x27;help;&#x27;</span> <span class="hljs-string">or</span> <span class="hljs-string">&#x27;\h&#x27;</span> <span class="hljs-string">for</span> <span class="hljs-string">help.</span> <span class="hljs-string">Type</span> <span class="hljs-string">&#x27;\c&#x27;</span> <span class="hljs-string">to</span> <span class="hljs-string">clear</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">input</span> <span class="hljs-string">statement.</span><br><br><span class="hljs-string">MariaDB</span> [<span class="hljs-string">(none)</span>]<span class="hljs-string">&gt;</span> <span class="hljs-string">status</span><br><br><span class="hljs-string">--------------</span><br><br><span class="hljs-string">mysql</span> <span class="hljs-string">Ver</span> <span class="hljs-number">15.1</span> <span class="hljs-string">Distrib</span> <span class="hljs-number">10.5</span><span class="hljs-number">.8</span><span class="hljs-string">-MariaDB,</span> <span class="hljs-string">for</span> <span class="hljs-string">Linux</span> <span class="hljs-string">(x86_64)</span> <span class="hljs-string">using</span> <span class="hljs-string">readline</span> <span class="hljs-number">5.1</span><br><br><span class="hljs-attr">Connection id:</span> <span class="hljs-number">4</span><br><br><span class="hljs-attr">Current database:</span> <br><br><span class="hljs-attr">Current user:</span> <span class="hljs-string">root@localhost</span><br><br><span class="hljs-attr">SSL:</span> <span class="hljs-string">Not</span> <span class="hljs-string">in</span> <span class="hljs-string">use</span><br><br><span class="hljs-attr">Current pager:</span> <span class="hljs-string">stdout</span><br><br><span class="hljs-attr">Using outfile:</span> <span class="hljs-string">&#x27;&#x27;</span><br><br><span class="hljs-attr">Using delimiter:</span> <span class="hljs-string">;</span><br><br><span class="hljs-attr">Server:</span> <span class="hljs-string">MariaDB</span><br><br><span class="hljs-attr">Server version:</span> <span class="hljs-number">10.5</span><span class="hljs-number">.8</span><span class="hljs-string">-MariaDB</span> <span class="hljs-string">MariaDB</span> <span class="hljs-string">Server</span><br><br><span class="hljs-attr">Protocol version:</span> <span class="hljs-number">10</span><br><br><span class="hljs-attr">Connection:</span> <span class="hljs-string">Localhost</span> <span class="hljs-string">via</span> <span class="hljs-string">UNIX</span> <span class="hljs-string">socket</span><br><br><span class="hljs-attr">Server characterset:</span> <span class="hljs-string">latin1</span><br><br><span class="hljs-attr">Db   characterset:</span> <span class="hljs-string">latin1</span><br><br><span class="hljs-attr">Client characterset:</span> <span class="hljs-string">utf8</span><br><br><span class="hljs-attr">Conn. characterset:</span> <span class="hljs-string">utf8</span><br><br><span class="hljs-attr">UNIX socket:</span> <span class="hljs-string">/var/lib/mysql/mysql.sock</span><br><br><span class="hljs-attr">Uptime:</span> <span class="hljs-number">2</span> <span class="hljs-string">min</span> <span class="hljs-number">43</span> <span class="hljs-string">sec</span><br><br><span class="hljs-attr">Threads: 2 Questions: 8 Slow queries: 0 Opens: 16 Open tables:</span> <span class="hljs-number">10</span> <span class="hljs-string">Queries</span> <br><br><span class="hljs-attr">per second avg:</span> <span class="hljs-number">0.049</span><br><br><span class="hljs-string">--------------</span><br><br><span class="hljs-string">MariaDB</span> [<span class="hljs-string">(none)</span>]<span class="hljs-string">&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="Ubuntu-利用默认仓库安装-MySQL-5-7"><a href="#Ubuntu-利用默认仓库安装-MySQL-5-7" class="headerlink" title="Ubuntu 利用默认仓库安装 MySQL 5.7"></a>Ubuntu 利用默认仓库安装 MySQL 5.7</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs yaml">[<span class="hljs-string">root@ubuntu1804</span> <span class="hljs-string">~</span>]<span class="hljs-comment">#apt install mysql-server</span><br><br>[<span class="hljs-string">root@ubuntu1804</span> <span class="hljs-string">~</span>]<span class="hljs-comment">#systemctl status mysql.service </span><br><br> <span class="hljs-string">mysql.service</span> <span class="hljs-bullet">-</span> <span class="hljs-string">MySQL</span> <span class="hljs-string">Community</span> <span class="hljs-string">Server</span><br><br>  <span class="hljs-attr">Loaded:</span> <span class="hljs-string">loaded</span> <span class="hljs-string">(/lib/systemd/system/mysql.service;</span> <span class="hljs-string">enabled;</span> <span class="hljs-attr">vendor preset:</span> <br><br><span class="hljs-string">enabled)</span><br><br>  <span class="hljs-attr">Active:</span> <span class="hljs-string">active</span> <span class="hljs-string">(running)</span> <span class="hljs-string">since</span> <span class="hljs-string">Wed</span> <span class="hljs-number">2021-01-27 15:41:33 </span><span class="hljs-string">CST;</span> <span class="hljs-string">10min</span> <span class="hljs-string">ago</span><br><br> <span class="hljs-attr">Main PID:</span> <span class="hljs-number">2115</span> <span class="hljs-string">(mysqld)</span><br><br>  <span class="hljs-attr">Tasks:</span> <span class="hljs-number">28</span> <span class="hljs-string">(limit:</span> <span class="hljs-number">2290</span><span class="hljs-string">)</span><br><br>  <span class="hljs-attr">CGroup:</span> <span class="hljs-string">/system.slice/mysql.service</span><br><br>     <span class="hljs-string">└─2115</span> <span class="hljs-string">/usr/sbin/mysqld</span> <span class="hljs-string">--daemonize</span> <span class="hljs-string">--pid-file=/run/mysqld/mysqld.pid</span><br><br><span class="hljs-string">Jan</span> <span class="hljs-number">27</span> <span class="hljs-number">15</span><span class="hljs-string">:41:33</span> <span class="hljs-string">ubuntu1804.magedu.org</span> <span class="hljs-string">systemd[1]:</span> <span class="hljs-string">Starting</span> <span class="hljs-string">MySQL</span> <span class="hljs-string">Community</span> <br><br><span class="hljs-string">Server...</span><br><br><span class="hljs-string">Jan</span> <span class="hljs-number">27</span> <span class="hljs-number">15</span><span class="hljs-string">:41:33</span> <span class="hljs-string">ubuntu1804.magedu.org</span> <span class="hljs-string">systemd[1]:</span> <span class="hljs-string">Started</span> <span class="hljs-string">MySQL</span> <span class="hljs-string">Community</span> <br><br><span class="hljs-string">Server.</span><br><br>[<span class="hljs-string">root@ubuntu1804</span> <span class="hljs-string">~</span>]<span class="hljs-comment">#mysql</span><br><br><span class="hljs-string">Welcome</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">MySQL</span> <span class="hljs-string">monitor.</span> <span class="hljs-string">Commands</span> <span class="hljs-string">end</span> <span class="hljs-string">with</span> <span class="hljs-string">;</span> <span class="hljs-string">or</span> <span class="hljs-string">\g.</span><br><br><span class="hljs-string">Your</span> <span class="hljs-string">MySQL</span> <span class="hljs-string">connection</span> <span class="hljs-string">id</span> <span class="hljs-string">is</span> <span class="hljs-number">3</span><br><br><span class="hljs-attr">Server version:</span> <span class="hljs-number">5.7</span><span class="hljs-number">.32</span><span class="hljs-string">-0ubuntu0.18.04.1</span> <span class="hljs-string">(Ubuntu)</span><br><br><span class="hljs-string">Copyright</span> <span class="hljs-string">(c)</span> <span class="hljs-number">2000</span><span class="hljs-string">,</span> <span class="hljs-number">2020</span><span class="hljs-string">,</span> <span class="hljs-string">Oracle</span> <span class="hljs-string">and/or</span> <span class="hljs-string">its</span> <span class="hljs-string">affiliates.</span> <span class="hljs-string">All</span> <span class="hljs-string">rights</span> <span class="hljs-string">reserved.</span><br><br><span class="hljs-string">Oracle</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">registered</span> <span class="hljs-string">trademark</span> <span class="hljs-string">of</span> <span class="hljs-string">Oracle</span> <span class="hljs-string">Corporation</span> <span class="hljs-string">and/or</span> <span class="hljs-string">its</span><br><br><span class="hljs-string">affiliates.</span> <span class="hljs-string">Other</span> <span class="hljs-string">names</span> <span class="hljs-string">may</span> <span class="hljs-string">be</span> <span class="hljs-string">trademarks</span> <span class="hljs-string">of</span> <span class="hljs-string">their</span> <span class="hljs-string">respective</span><br><br><span class="hljs-string">owners.</span><br><br><span class="hljs-string">Type</span> <span class="hljs-string">&#x27;help;&#x27;</span> <span class="hljs-string">or</span> <span class="hljs-string">&#x27;\h&#x27;</span> <span class="hljs-string">for</span> <span class="hljs-string">help.</span> <span class="hljs-string">Type</span> <span class="hljs-string">&#x27;\c&#x27;</span> <span class="hljs-string">to</span> <span class="hljs-string">clear</span> <span class="hljs-string">the</span> <span class="hljs-string">current</span> <span class="hljs-string">input</span> <span class="hljs-string">statement.</span><br><br><span class="hljs-string">mysql&gt;</span> <span class="hljs-string">status</span><br><br><span class="hljs-string">--------------</span><br><br><span class="hljs-string">mysql</span> <span class="hljs-string">Ver</span> <span class="hljs-number">14.14</span> <span class="hljs-string">Distrib</span> <span class="hljs-number">5.7</span><span class="hljs-number">.32</span><span class="hljs-string">,</span> <span class="hljs-string">for</span> <span class="hljs-string">Linux</span> <span class="hljs-string">(x86_64)</span> <span class="hljs-string">using</span> <span class="hljs-string">EditLine</span> <span class="hljs-string">wrapper</span><br><br><span class="hljs-attr">Connection id:</span> <span class="hljs-number">3</span><br><br><span class="hljs-attr">Current database:</span> <br><br><span class="hljs-attr">Current user:</span> <span class="hljs-string">root@localhost</span><br><br><span class="hljs-attr">SSL:</span> <span class="hljs-string">Not</span> <span class="hljs-string">in</span> <span class="hljs-string">use</span><br><br><span class="hljs-attr">Current pager:</span> <span class="hljs-string">stdout</span><br><br><span class="hljs-attr">Using outfile:</span> <span class="hljs-string">&#x27;&#x27;</span><br><br><span class="hljs-attr">Using delimiter:</span> <span class="hljs-string">;</span><br><br><span class="hljs-attr">Server version:</span> <span class="hljs-number">5.7</span><span class="hljs-number">.32</span><span class="hljs-string">-0ubuntu0.18.04.1</span> <span class="hljs-string">(Ubuntu)</span><br><br><span class="hljs-attr">Protocol version:</span> <span class="hljs-number">10</span><br><br><span class="hljs-attr">Connection:</span> <span class="hljs-string">Localhost</span> <span class="hljs-string">via</span> <span class="hljs-string">UNIX</span> <span class="hljs-string">socket</span><br><br><span class="hljs-attr">Server characterset:</span> <span class="hljs-string">latin1</span><br><br><span class="hljs-attr">Db   characterset:</span> <span class="hljs-string">latin1</span><br><br><span class="hljs-attr">Client characterset:</span> <span class="hljs-string">utf8</span><br><br><span class="hljs-attr">Conn. characterset:</span> <span class="hljs-string">utf8</span><br><br><span class="hljs-attr">UNIX socket:</span> <span class="hljs-string">/var/run/mysqld/mysqld.sock</span><br><br><span class="hljs-attr">Uptime:</span> <span class="hljs-number">10</span> <span class="hljs-string">min</span> <span class="hljs-number">43</span> <span class="hljs-string">sec</span><br><br><span class="hljs-attr">Threads: 1 Questions: 10 Slow queries: 0 Opens: 105 Flush tables:</span> <span class="hljs-number">1</span> <span class="hljs-string">Open</span> <br><br><span class="hljs-attr">tables: 98 Queries per second avg:</span> <span class="hljs-number">0.015</span><br><br><span class="hljs-string">--------------</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="初始化脚本提高安全性"><a href="#初始化脚本提高安全性" class="headerlink" title="初始化脚本提高安全性"></a><strong>初始化脚本提高安全性</strong></h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xquery">运行脚本：mysql_secure_installation<br><br>设置数据库管理<span class="hljs-built_in">员root</span>口令<br><br>禁<span class="hljs-built_in">止root</span>远程登录<br><br>删除anonymous用户帐号<br><br>删除test数据库<br></code></pre></td></tr></table></figure>
+
+<p>针对MySQL5.6前版本进行安全加固</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><code class="hljs applescript">root@centos7 ~]<span class="hljs-comment">#mysql</span><br><br>Welcome <span class="hljs-keyword">to</span> <span class="hljs-keyword">the</span> MySQL monitor. Commands <span class="hljs-keyword">end</span> <span class="hljs-keyword">with</span> ; <span class="hljs-keyword">or</span> \g.<br><br>Your MySQL connection <span class="hljs-built_in">id</span> <span class="hljs-keyword">is</span> <span class="hljs-number">2</span><br><br>Server <span class="hljs-built_in">version</span>: <span class="hljs-number">5.6</span><span class="hljs-number">.51</span> MySQL Community Server (GPL)<br><br>Copyright (c) <span class="hljs-number">2000</span>, <span class="hljs-number">2021</span>, Oracle <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> <span class="hljs-keyword">its</span> affiliates. All rights reserved.<br><br>Oracle <span class="hljs-keyword">is</span> a registered trademark <span class="hljs-keyword">of</span> Oracle Corporation <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> <span class="hljs-keyword">its</span><br><br>affiliates. Other names may be trademarks <span class="hljs-keyword">of</span> their respective<br><br>owners.<br><br>Type &#x27;help;&#x27; <span class="hljs-keyword">or</span> &#x27;\h&#x27; <span class="hljs-keyword">for</span> help. Type &#x27;\c&#x27; <span class="hljs-keyword">to</span> clear <span class="hljs-keyword">the</span> current input statement.<br><br>mysql&gt; show databases;<br><br>+<span class="hljs-comment">--------------------+</span><br><br>| Database      |<br><br>+<span class="hljs-comment">--------------------+</span><br><br>| information_schema |<br><br>| mysql       |<br><br>| performance_schema |<br><br>+<span class="hljs-comment">--------------------+ </span><br><br><span class="hljs-number">3</span> rows <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql&gt; select user,host <span class="hljs-keyword">from</span> mysql.user;<br><br>+<span class="hljs-comment">------+--------------------------+</span><br><br>| user | host           |<br><br>+<span class="hljs-comment">------+--------------------------+</span><br><br>| root | <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>        |<br><br>| root | ::<span class="hljs-number">1</span>           |<br><br>|   | centos7.wangxiaochun.com |<br><br>| root | centos7.wangxiaochun.com |<br><br>|   | localhost        |<br><br>| root | localhost        |<br><br>+<span class="hljs-comment">------+--------------------------+ </span><br><br><span class="hljs-number">6</span> rows <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql&gt; <span class="hljs-keyword">exit</span><br><br>Bye<br><br>[root@centos7 ~]<span class="hljs-comment">#</span><br><br>[root@centos7 ~]<span class="hljs-comment">#mysql -uxxx </span><br><br>Welcome <span class="hljs-keyword">to</span> <span class="hljs-keyword">the</span> MySQL monitor. Commands <span class="hljs-keyword">end</span> <span class="hljs-keyword">with</span> ; <span class="hljs-keyword">or</span> \g.<br><br>Your MySQL connection <span class="hljs-built_in">id</span> <span class="hljs-keyword">is</span> <span class="hljs-number">3</span><br><br>Server <span class="hljs-built_in">version</span>: <span class="hljs-number">5.6</span><span class="hljs-number">.51</span> MySQL Community Server (GPL)<br><br>Copyright (c) <span class="hljs-number">2000</span>, <span class="hljs-number">2021</span>, Oracle <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> <span class="hljs-keyword">its</span> affiliates. All rights reserved.<br><br>Oracle <span class="hljs-keyword">is</span> a registered trademark <span class="hljs-keyword">of</span> Oracle Corporation <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> <span class="hljs-keyword">its</span><br><br>affiliates. Other names may be trademarks <span class="hljs-keyword">of</span> their respective<br><br>owners.<br><br>Type &#x27;help;&#x27; <span class="hljs-keyword">or</span> &#x27;\h&#x27; <span class="hljs-keyword">for</span> help. Type &#x27;\c&#x27; <span class="hljs-keyword">to</span> clear <span class="hljs-keyword">the</span> current input statement.<br><br>mysql&gt; status<br><br><span class="hljs-comment">--------------</span><br><br>mysql Ver <span class="hljs-number">14.14</span> Distrib <span class="hljs-number">5.6</span><span class="hljs-number">.51</span>, <span class="hljs-keyword">for</span> Linux (x86_64) using EditLine wrapper<br><br>Connection <span class="hljs-built_in">id</span>: <span class="hljs-number">3</span><br><br>Current database: <br><br>Current user: xxx@localhost<br><br>SSL: Not <span class="hljs-keyword">in</span> use<br><br>Current pager: stdout<br><br>Using outfile: &#x27;&#x27;<br><br>Using delimiter: ;<br><br>Server <span class="hljs-built_in">version</span>: <span class="hljs-number">5.6</span><span class="hljs-number">.51</span> MySQL Community Server (GPL)<br><br>Protocol <span class="hljs-built_in">version</span>: <span class="hljs-number">10</span><br><br>Connection: Localhost via UNIX socket<br><br>Server characterset: latin1<br><br>Db   characterset: latin1<br><br>Client characterset: utf8<br><br>Conn. characterset: utf8<br><br>UNIX socket: /var/lib/mysql/mysql.sock<br><br>Uptime: <span class="hljs-number">5</span> min <span class="hljs-number">2</span> sec<br><br>Threads: <span class="hljs-number">1</span> Questions: <span class="hljs-number">11</span> Slow queries: <span class="hljs-number">0</span> Opens: <span class="hljs-number">67</span> Flush tables: <span class="hljs-number">1</span> Open <br><br>tables: <span class="hljs-number">60</span> Queries per <span class="hljs-keyword">second</span> avg: <span class="hljs-number">0.036</span><br><br><span class="hljs-comment">--------------</span><br><br>mysql&gt; <span class="hljs-keyword">exit</span><br><br>Bye<br><br>[root@centos7 ~]<span class="hljs-comment">#file `which mysql_secure_installation `</span><br><br>/usr/bin/mysql_secure_installation: Perl <span class="hljs-keyword">script</span>, ASCII <span class="hljs-built_in">text</span> executable<br><br>[root@centos7 ~]<span class="hljs-comment">#mysql_secure_installation </span><br><br>NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MySQL<br><br>   SERVERS IN PRODUCTION USE! PLEASE READ EACH STEP CAREFULLY!<br><br>In order <span class="hljs-keyword">to</span> <span class="hljs-built_in">log</span> <span class="hljs-keyword">into</span> MySQL <span class="hljs-keyword">to</span> secure <span class="hljs-keyword">it</span>, we&#x27;ll need <span class="hljs-keyword">the</span> current<br><br>password <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> root user. If you&#x27;ve just installed MySQL, <span class="hljs-keyword">and</span><br><br>you haven&#x27;t <span class="hljs-keyword">set</span> <span class="hljs-keyword">the</span> root password yet, <span class="hljs-keyword">the</span> password will be blank,<br><br>so you should just press enter here.<br><br>Enter current password <span class="hljs-keyword">for</span> root (enter <span class="hljs-keyword">for</span> none): <br><br>OK, successfully used password, moving <span class="hljs-keyword">on</span>...<br><br>Setting <span class="hljs-keyword">the</span> root password ensures <span class="hljs-keyword">that</span> nobody can <span class="hljs-built_in">log</span> <span class="hljs-keyword">into</span> <span class="hljs-keyword">the</span> MySQL<br><br>root user <span class="hljs-keyword">without</span> <span class="hljs-keyword">the</span> proper authorisation.<br><br>Set root password? [Y/n] y<br><br>New password: <br><br>Re-enter new password: <br><br>Password updated successfully!<br><br>Reloading privilege tables..<br><br> ... Success!<br><br>By default, a MySQL installation has an anonymous user, allowing anyone<br><br><span class="hljs-keyword">to</span> <span class="hljs-built_in">log</span> <span class="hljs-keyword">into</span> MySQL <span class="hljs-keyword">without</span> having <span class="hljs-keyword">to</span> have a user account created <span class="hljs-keyword">for</span><br><br>them. This <span class="hljs-keyword">is</span> intended only <span class="hljs-keyword">for</span> testing, <span class="hljs-keyword">and</span> <span class="hljs-keyword">to</span> make <span class="hljs-keyword">the</span> installation<br><br>go a bit smoother. You should remove them <span class="hljs-keyword">before</span> moving <span class="hljs-keyword">into</span> a<br><br>production environment.<br><br>Remove anonymous users? [Y/n] y<br><br> ... Success!<br><br>Normally, root should only be allowed <span class="hljs-keyword">to</span> connect <span class="hljs-keyword">from</span> &#x27;localhost&#x27;. This<br><br>ensures <span class="hljs-keyword">that</span> someone cannot guess <span class="hljs-keyword">at</span> <span class="hljs-keyword">the</span> root password <span class="hljs-keyword">from</span> <span class="hljs-keyword">the</span> network.<br><br>Disallow root login remotely? [Y/n] y<br><br> ... Success!<br><br>By default, MySQL comes <span class="hljs-keyword">with</span> a database named &#x27;test&#x27; <span class="hljs-keyword">that</span> anyone can<br><br>access. This <span class="hljs-keyword">is</span> also intended only <span class="hljs-keyword">for</span> testing, <span class="hljs-keyword">and</span> should be removed<br><br><span class="hljs-keyword">before</span> moving <span class="hljs-keyword">into</span> a production environment.<br><br>Remove test database <span class="hljs-keyword">and</span> access <span class="hljs-keyword">to</span> <span class="hljs-keyword">it</span>? [Y/n] y<br><br>- Dropping test database...<br><br>ERROR <span class="hljs-number">1008</span> (HY000) <span class="hljs-keyword">at</span> line <span class="hljs-number">1</span>: Can&#x27;t drop database &#x27;test&#x27;; database doesn&#x27;t exist<br><br> ... Failed! Not critical, keep moving...<br><br>- Removing privileges <span class="hljs-keyword">on</span> test database...<br><br> ... Success!<br><br>Reloading <span class="hljs-keyword">the</span> privilege tables will ensure <span class="hljs-keyword">that</span> all changes made so far<br><br>will take effect immediately.<br><br>Reload privilege tables now? [Y/n] y<br><br> ... Success!<br><br>All done! If you&#x27;ve completed all <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> <span class="hljs-keyword">above</span> steps, your MySQL<br><br>installation should now be secure.<br><br>Thanks <span class="hljs-keyword">for</span> using MySQL!<br><br>Cleaning up...<br><br>[root@centos7 ~]<span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="MySQL-组成和常用工具"><a href="#MySQL-组成和常用工具" class="headerlink" title="MySQL 组成和常用工具"></a><strong>MySQL</strong> <strong>组成和常用工具</strong></h2><h3 id="客户端程序"><a href="#客户端程序" class="headerlink" title="客户端程序"></a><strong>客户端程序</strong></h3><ul>
+<li>mysql: 基于mysql协议交互式或非交互式的CLI工具</li>
+<li>mysqldump：备份工具，基于mysql协议向mysqld发起查询请求，并将查得的所有数据转换成</li>
+<li>insert等写操作语句保存文本文件中</li>
+<li>mysqladmin：基于mysql协议管理mysqld</li>
+<li>mysqlimport：数据导入工具</li>
+</ul>
+<p>MyISAM存储引擎的管理工具：</p>
+<ul>
+<li>myisamchk：检查MyISAM库</li>
+<li>myisampack：打包MyISAM表，只读</li>
+</ul>
+<h3 id="服务器端程序"><a href="#服务器端程序" class="headerlink" title="服务器端程序"></a><strong>服务器端程序</strong></h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ada">mysqld_safe<br><br>mysqld<br><br>mysqld_multi 多实例 ，示例：mysqld_multi <span class="hljs-comment">--example</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="用户账号"><a href="#用户账号" class="headerlink" title="用户账号"></a><strong>用户账号</strong></h3><p>mysql用户账号由两部分组成：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-string">&#x27;USERNAME&#x27;</span>@<span class="hljs-string">&#x27;HOST&#x27;</span><br><br><span class="hljs-symbol">wang@</span><span class="hljs-string">&#x27;10.0.0.100&#x27;</span><br><br><span class="hljs-symbol">wang@</span><span class="hljs-string">&#x27;10.0.0.%&#x27;</span><br><br><span class="hljs-symbol">wang@</span><span class="hljs-string">&#x27;%</span><br></code></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<p>HOST限制此用户可通过哪些远程主机连接mysql服务器</p>
+<p>支持使用通配符：</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gcode"><span class="hljs-meta">%</span> 匹配任意长度的任意字符,相当于shell中*, 示例: <span class="hljs-number">172.16</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>/<span class="hljs-number">255.255</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span> 或 <span class="hljs-number">172.16</span>.<span class="hljs-meta">%</span>.<span class="hljs-meta">%</span><br><br>_ 匹配任意单个字符,相当于shell中? <br></code></pre></td></tr></table></figure>
+
+<h3 id="mysql-客户端命令"><a href="#mysql-客户端命令" class="headerlink" title="mysql 客户端命令"></a><strong>mysql</strong> <strong>客户端命令</strong></h3><h4 id="mysql-运行命令类型"><a href="#mysql-运行命令类型" class="headerlink" title="mysql 运行命令类型"></a><strong>mysql</strong> <strong>运行命令类型</strong></h4><p>客户端命令：本地执行，每个命令都完整形式和简写格式</p>
+<p>查看版本：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">[root@centos8 ~]<span class="hljs-comment">#mysql -V</span><br><br>mysql Ver <span class="hljs-number">8.0</span><span class="hljs-number">.21</span> <span class="hljs-keyword">for</span> Linux <span class="hljs-literal">on</span> x86_64 (Source distribution)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">\h, <span class="hljs-built_in">help</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">\u，use</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">\s，status</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">\!，system</span><br></code></pre></td></tr></table></figure>
+
+<p>服务端命令：通过mysql协议发往服务器执行并取回结果，命令末尾都必须使用命令结束符号，默</p>
+<p>认为分号</p>
+<p>#示例：</p>
+<p>mysql&gt;SELECT VERSION();</p>
+<h4 id="mysql-使用模式"><a href="#mysql-使用模式" class="headerlink" title="mysql 使用模式"></a><strong>mysql</strong> <strong>使用模式</strong></h4><ul>
+<li>交互模式</li>
+<li>脚本模式：</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gradle"> mysql -uUSERNAME -pPASSWORD &lt; <span class="hljs-regexp">/path/</span>somefile.sql<br><br>cat <span class="hljs-regexp">/path/</span>somefile.sql | mysql -uUSERNAME -pPASSWORD<br><br> mysql&gt;<span class="hljs-keyword">source</span>  <span class="hljs-regexp">/path/</span><span class="hljs-keyword">from</span>/somefile.sql<br><br><br></code></pre></td></tr></table></figure>
+
+<h4 id="mysql-命令使用格式"><a href="#mysql-命令使用格式" class="headerlink" title="mysql****命令使用格式"></a><strong>mysql****命令使用格式</strong></h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">mysql <span class="hljs-selector-attr">[OPTIONS]</span> <span class="hljs-selector-attr">[database]</span><br></code></pre></td></tr></table></figure>
+
+<p>mysql客户端常用选项：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs stylus">-A, <span class="hljs-attr">--no-auto-rehash</span> 禁止补全<br><br>-u, <span class="hljs-attr">--user</span>= 用户名,默认为root<br><br>-h, <span class="hljs-attr">--host</span>= 服务器主机,默认为localhost<br><br>-<span class="hljs-selector-tag">p</span>, <span class="hljs-attr">--passowrd</span>= 用户密码,建议使用-<span class="hljs-selector-tag">p</span>,默认为空密码<br><br>-P, <span class="hljs-attr">--port</span>= 服务器端口<br><br>-S, <span class="hljs-attr">--socket</span>= 指定连接socket文件路径<br><br>-D, <span class="hljs-attr">--database</span>= 指定默认数据库<br><br>-C, <span class="hljs-attr">--compress</span> 启用压缩<br><br>-e  <span class="hljs-string">&quot;SQL&quot;</span> 执行SQL命令<br><br>-V, <span class="hljs-attr">--version</span> 显示版本<br><br>-v  <span class="hljs-attr">--verbose</span> 显示详细信息<br><br><span class="hljs-attr">--print-defaults</span> 获取程序默认使用的配置<br></code></pre></td></tr></table></figure>
+
+<p>登录系统：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment">#默认空密码登录</span><br><br><span class="hljs-attribute">mysql</span>  -uroot  -p<br></code></pre></td></tr></table></figure>
+
+<p>运行mysql命令</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp">mysql&gt;use mysql <span class="hljs-meta">#切换数据库</span><br><br>mysql&gt; <span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">database</span>()</span>;          <span class="hljs-meta">#查看当前数据库</span><br><br>mysql&gt;<span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">user</span>()</span>; <span class="hljs-meta">#查看当前用户</span><br><br>mysql&gt;SELECT User,Host,Password FROM user;<br><br>mysql&gt;system clear <span class="hljs-meta">#清屏</span><br><br>mysql&gt; ^DBye    <span class="hljs-meta">#ctrl+d 退出</span><br></code></pre></td></tr></table></figure>
+
+<p>客户端 mysql 的配置文件，修改提示符</p>
+<p>#查看mysql版本</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs swift">[root<span class="hljs-meta">@centos8</span> <span class="hljs-operator">~</span>]#mysql <span class="hljs-operator">-</span><span class="hljs-type">V</span><br><br>mysql <span class="hljs-type">Ver</span> <span class="hljs-number">15.1</span> <span class="hljs-type">Distrib</span> <span class="hljs-number">10.3</span>.<span class="hljs-number">11</span><span class="hljs-operator">-</span><span class="hljs-type">MariaDB</span>, <span class="hljs-keyword">for</span> <span class="hljs-type">Linux</span> (x86_64) using readline <span class="hljs-number">5.1</span><br><br>\#临时修改mysql提示符<br><br>[root<span class="hljs-meta">@centos8</span> <span class="hljs-operator">~</span>]#mysql <span class="hljs-operator">-</span>uroot <span class="hljs-operator">-</span>pcentos <span class="hljs-operator">--</span>prompt<span class="hljs-operator">=</span><span class="hljs-string">&quot;<span class="hljs-subst">\\</span>r:<span class="hljs-subst">\\</span>m:<span class="hljs-subst">\\</span>s(<span class="hljs-subst">\\</span>u@<span class="hljs-subst">\\</span>h) [<span class="hljs-subst">\\</span>d]&gt;<span class="hljs-subst">\\</span>_&quot;</span> <br><br>\#临时修改mysql提示符<br><br>[root<span class="hljs-meta">@centos8</span> <span class="hljs-operator">~</span>]#export <span class="hljs-type">MYSQL_PS1</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;<span class="hljs-subst">\\</span>r:<span class="hljs-subst">\\</span>m:<span class="hljs-subst">\\</span>s(<span class="hljs-subst">\\</span>u@<span class="hljs-subst">\\</span>h) [<span class="hljs-subst">\\</span>d]&gt;<span class="hljs-subst">\\</span>_&quot;</span>  <br><br>\#持久修改mysql提示符<br><br>[root<span class="hljs-meta">@centos8</span> <span class="hljs-operator">~</span>]#vim <span class="hljs-operator">/</span>etc<span class="hljs-operator">/</span>my.cnf.d<span class="hljs-operator">/</span>mysql<span class="hljs-operator">-</span>clients.cnf <br><br>[mysql]<br><br>prompt<span class="hljs-operator">=</span><span class="hljs-string">&quot;<span class="hljs-subst">\\</span>r:<span class="hljs-subst">\\</span>m:<span class="hljs-subst">\\</span>s(<span class="hljs-subst">\\</span>u@<span class="hljs-subst">\\</span>h) [<span class="hljs-subst">\\</span>d]&gt;<span class="hljs-subst">\\</span>_&quot;</span>                     <br><br>[root<span class="hljs-meta">@centos8</span> <span class="hljs-operator">~</span>]#mysql <span class="hljs-operator">--</span>print<span class="hljs-operator">-</span>defaults <span class="hljs-operator">-</span>v<br><br>mysql would have been started with the following arguments:<br><br><span class="hljs-operator">--</span>prompt<span class="hljs-operator">=</span>\r:\m:\s(\u@\h) [\d]<span class="hljs-operator">&gt;</span>\<span class="hljs-keyword">_</span> <span class="hljs-operator">-</span>v <br><br>[root<span class="hljs-meta">@centos8</span> <span class="hljs-operator">~</span>]#mysql <br><br><span class="hljs-type">Welcome</span> to the <span class="hljs-type">MariaDB</span> monitor. <span class="hljs-type">Commands</span> end with ; or \g.<br><br><span class="hljs-type">Your</span> <span class="hljs-type">MariaDB</span> connection id <span class="hljs-keyword">is</span> <span class="hljs-number">11</span><br><br><span class="hljs-type">Server</span> version: <span class="hljs-number">10.3</span>.<span class="hljs-number">11</span><span class="hljs-operator">-</span><span class="hljs-type">MariaDB</span> <span class="hljs-type">MariaDB</span> <span class="hljs-type">Server</span><br><br><span class="hljs-type">Copyright</span> (c) <span class="hljs-number">2000</span>, <span class="hljs-number">2018</span>, <span class="hljs-type">Oracle</span>, <span class="hljs-type">MariaDB</span> <span class="hljs-type">Corporation</span> <span class="hljs-type">Ab</span> and others.<br><br><span class="hljs-type">Type</span> &#x27;help;&#x27; or &#x27;\h&#x27; <span class="hljs-keyword">for</span> help. <span class="hljs-type">Type</span> &#x27;\c&#x27; to clear the current input statement.<br><br><span class="hljs-number">10</span>:<span class="hljs-number">29</span>:<span class="hljs-number">30</span>(root<span class="hljs-meta">@localhost</span>) [(none)]<span class="hljs-operator">&gt;</span> use mysql<br><br><span class="hljs-type">Reading</span> table information <span class="hljs-keyword">for</span> completion of table and column names<br><br><span class="hljs-type">You</span> can turn off this feature to <span class="hljs-keyword">get</span> a quicker startup with <span class="hljs-operator">-</span><span class="hljs-type">A</span><br><br><span class="hljs-type">Database</span> changed<br><br><span class="hljs-number">10</span>:<span class="hljs-number">29</span>:<span class="hljs-number">34</span>(root<span class="hljs-meta">@localhost</span>) [mysql]<span class="hljs-operator">&gt;</span> exit<br></code></pre></td></tr></table></figure>
+
+<p>配置所有MySQL 客户端的自动登录</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs stylus">vim /etc/my<span class="hljs-selector-class">.cnf</span>.d/client<span class="hljs-selector-class">.cnf</span><br><br><span class="hljs-selector-attr">[client]</span><br><br>user=wang<br><br>password=<span class="hljs-number">123456</span><br><br>​               <br><br><span class="hljs-selector-attr">[mysql]</span><br><br>prompt=(\\u@\\h) <span class="hljs-selector-attr">[\\d]</span>&gt;\\_<br></code></pre></td></tr></table></figure>
+
+<h4 id="mysqladmin-命令"><a href="#mysqladmin-命令" class="headerlink" title="mysqladmin****命令"></a><strong>mysqladmin****命令</strong></h4><p>mysqladmin 命令格式</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">mysqladmin [OPTIONS] <span class="hljs-keyword">command</span> <span class="hljs-keyword">command</span>.<span class="hljs-string">...</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta">#查看mysql服务是否正常，如果正常提示mysqld is alive</span><br><br>mysqladmin -uroot -pcentos  <span class="hljs-built_in">ping</span><br><br>\<span class="hljs-meta">#关闭mysql服务，但mysqladmin命令无法开启</span><br><br>mysqladmin -uroot -pcentos <span class="hljs-built_in">shutdown</span><br><br>\<span class="hljs-meta">#创建数据库testdb</span><br><br>mysqladmin -uroot -pcentos  create testdb <br><br>\<span class="hljs-meta">#删除数据库testdb</span><br><br>mysqladmin -uroot -pcentos  drop testdb<br><br>\<span class="hljs-meta">#修改root密码</span><br><br>mysqladmin -uroot -pcentos password <span class="hljs-string">&#x27;magedu&#x27;</span><br><br>\<span class="hljs-meta">#日志滚动,生成新文件/var/lib/mysql/mariadb-bin.00000N</span><br><br>mysqladmin -uroot -pcentos flush-logs<br></code></pre></td></tr></table></figure>
+
+<h4 id="mycli"><a href="#mycli" class="headerlink" title="mycli"></a><strong>mycli</strong></h4><p>MyCLI 是基于Python开发的MySQL的命令行工具，具有自动完成和语法突出显示功能安装</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-id">#CentOS8</span>安装<br><br><span class="hljs-selector-attr">[root@centos8 ~]</span><span class="hljs-selector-id">#yum</span> <span class="hljs-selector-tag">install</span> <span class="hljs-selector-tag">python3-pip</span> <span class="hljs-selector-tag">-y</span><br><br><span class="hljs-selector-attr">[root@centos8 ~]</span><span class="hljs-selector-id">#pip3</span> <span class="hljs-selector-tag">install</span> <span class="hljs-selector-tag">mycli</span><br><br>\<span class="hljs-selector-id">#ubuntu</span>安装<br><br><span class="hljs-selector-attr">[root@ubuntu1804 ~]</span><span class="hljs-selector-id">#apt</span> <span class="hljs-selector-tag">-y</span> <span class="hljs-selector-tag">install</span> <span class="hljs-selector-tag">mycli</span><br><br><span class="hljs-selector-attr">[root@ubuntu1804 ~]</span><span class="hljs-selector-id">#mycli</span> <span class="hljs-selector-tag">-u</span> <span class="hljs-selector-tag">root</span> <span class="hljs-selector-tag">-S</span> /<span class="hljs-selector-tag">var</span>/<span class="hljs-selector-tag">run</span>/<span class="hljs-selector-tag">mysqld</span>/<span class="hljs-selector-tag">mysqld</span><span class="hljs-selector-class">.sock</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="服务器端配置"><a href="#服务器端配置" class="headerlink" title="服务器端配置"></a><strong>服务器端配置</strong></h3><h4 id="服务器端配置文件"><a href="#服务器端配置文件" class="headerlink" title="服务器端配置文件"></a><strong>服务器端配置文件</strong></h4><p>服务器端(mysqld)：工作特性有多种配置方式</p>
+<p>1、命令行选项：</p>
+<p>2、配置文件：类ini格式,集中式的配置，能够为mysql的各应用程序提供配置信息</p>
+<p>服务器端配置文件：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/my</span>.cnf  <span class="hljs-comment">#Global选项</span><br><br><span class="hljs-regexp">/etc/my</span>sql/my.cnf <span class="hljs-comment">#Global选项</span><br><br>~/.my.cnf <span class="hljs-comment">#User-specific 选项</span><br></code></pre></td></tr></table></figure>
+
+<p>配置文件格式：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-string">[mysqld]</span><br><span class="hljs-string"></span><br><span class="hljs-string">[mysqld_safe]</span><br><span class="hljs-string"></span><br><span class="hljs-string">[mysqld_multi]</span><br><span class="hljs-string"></span><br><span class="hljs-string">[mysql]</span><br><span class="hljs-string"></span><br><span class="hljs-string">[mysqladmin]</span><br><span class="hljs-string"></span><br><span class="hljs-string">[mysqldump]</span><br><span class="hljs-string"></span><br><span class="hljs-string">[server]</span><br><span class="hljs-string"></span><br><span class="hljs-string">[client]</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">parameter</span> <span class="hljs-operator">=</span> value<br></code></pre></td></tr></table></figure>
+
+<p>说明</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmake">_和- 相同<br><br><span class="hljs-number">1</span>，<span class="hljs-keyword">ON</span>，<span class="hljs-keyword">TRUE</span>意义相同， <span class="hljs-number">0</span>，<span class="hljs-keyword">OFF</span>，<span class="hljs-keyword">FALSE</span>意义相同,无区分大小写<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="socket-连接说明"><a href="#socket-连接说明" class="headerlink" title="socket 连接说明"></a><strong>socket</strong> <strong>连接说明</strong></h4><p>官方说明</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>dev.mysql.com<span class="hljs-regexp">/doc/my</span>sql-port-reference<span class="hljs-regexp">/en/my</span>sql-ports-reference-tables.html<span class="hljs-comment">#mysql-client-server-ports</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>服务器监听的两种 socket 地址：</p>
+<ul>
+<li>ip socket: 监听在tcp的3306端口，支持远程通信 ，侦听3306/tcp端口可以在绑定有一个或全部接口IP上</li>
+<li>unix sock: 监听在sock文件上，仅支持本机通信, 如：/var/lib/mysql/mysql.sock)</li>
+</ul>
+<p>说明：host为localhost 时自动使用unix sock</p>
+<p>MySQL的端口</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">mysql&gt; SHOW VARIABLES LIKE &#x27;port&#x27;; <br><br>+<span class="hljs-params">---------------</span>+<span class="hljs-params">-------</span>+<br><br>| Variable_name | Value |<br><br>+<span class="hljs-params">---------------</span>+<span class="hljs-params">-------</span>+<br><br>| port     | 3306 |<br><br>+<span class="hljs-params">---------------</span>+<span class="hljs-params">-------</span>+ <br><br>1 row in <span class="hljs-keyword">set</span> <span class="hljs-params">(0.01 sec)</span><br><br><span class="hljs-comment">#MySQL8.0增加了一个33060/tcp端口</span><br><br><span class="hljs-comment">#Port 33060 is the default port for the MySQL Database Extended Interface (the </span><br><br>MySQL X Protocol).<br><br>mysql&gt; SHOW VARIABLES LIKE &#x27;mysqlx_port&#x27;; <br><br>+<span class="hljs-params">---------------</span>+<span class="hljs-params">-------</span>+<br><br>| Variable_name | Value |<br><br>+<span class="hljs-params">---------------</span>+<span class="hljs-params">-------</span>+<br><br>| mysqlx_port  | 33060 |<br><br>+<span class="hljs-params">---------------</span>+<span class="hljs-params">-------</span>+ <br><br>1 row in <span class="hljs-keyword">set</span> <span class="hljs-params">(0.00 sec)</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="关闭mysqld网络连接"><a href="#关闭mysqld网络连接" class="headerlink" title="关闭mysqld网络连接"></a><strong>关闭<strong><strong>mysqld</strong></strong>网络连接</strong></h4><p>只侦听本地客户端， 所有客户端和服务器的交互都通过一个socket文件实现，socket的配置存放在/var/lib/mysql/mysql.sock） 可在/etc/my.cnf修改</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs routeros">vim /etc/my.cnf<br><br>[mysqld]<br><br><span class="hljs-attribute">skip-networking</span>=1<br><br><span class="hljs-attribute">bind_address</span>=127.0.0.1<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux%E7%AC%94%E8%AE%B0/">Linux笔记</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/13/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%EF%BC%9A%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网络安全：工具使用</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/09/Linux%EF%BC%9A%E7%AC%AC3%E5%91%A8%E4%BD%9C%E4%B8%9A/">
+                        <span class="hidden-mobile">Linux：第3周作业</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
